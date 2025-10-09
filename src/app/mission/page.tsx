@@ -21,7 +21,7 @@ export default function Mission() {
           <div className={styles.infoCard}>
             <h3>Innovation</h3>
             <p>
-              We push the boundaries of what's possible through creative
+              We push the boundaries of what&apos;s possible through creative
               problem-solving and cutting-edge research.
             </p>
           </div>
