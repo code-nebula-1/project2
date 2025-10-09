@@ -11,9 +11,9 @@ export default function Contact() {
         <section className={styles.welcome}>
           <h2>Join Our Team</h2>
           <p>
-            We're always looking for passionate individuals to collaborate with
-            us. Whether you're a student, researcher, or industry partner, we'd
-            love to hear from you.
+            We&apos;re always looking for passionate individuals to collaborate
+            with us. Whether you&apos;re a student, researcher, or industry
+            partner, we&apos;d love to hear from you.
           </p>
         </section>
 
@@ -34,8 +34,8 @@ export default function Contact() {
             <h3>For Collaborators</h3>
             <p>Looking to partner on a research project?</p>
             <p>
-              We're open to collaborations with other institutions and industry
-              partners.
+              We&apos;re open to collaborations with other institutions and
+              industry partners.
             </p>
             <p>
               <strong>Email:</strong> collaborate@lab.edu

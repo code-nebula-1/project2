@@ -35,9 +35,9 @@ export default function News() {
               <strong>September 2024</strong>
             </p>
             <p>
-              We're excited to welcome three new researchers to our lab this
-              fall. Their diverse backgrounds will bring fresh perspectives to
-              our work.
+              We&apos;re excited to welcome three new researchers to our lab
+              this fall. Their diverse backgrounds will bring fresh perspectives
+              to our work.
             </p>
           </div>
 
@@ -83,7 +83,7 @@ export default function News() {
               <strong>May 2024</strong>
             </p>
             <p>
-              We celebrated our lab's 5th anniversary with a special event.
+              We celebrated our lab&apos;s 5th anniversary with a special event.
               Thank you to everyone who has been part of our journey!
             </p>
           </div>
