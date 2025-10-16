@@ -48,8 +48,8 @@ export default function Contact() {
             Ready to collaborate, join our research community, or learn more
             about our work? We'd love to hear from you.
           </p>
-          <CTAButton className="mt-14" size="lg">
-            [Send Message]
+          <CTAButton className="mt-14" size="lg" textStyle="bracket">
+            Send Message
           </CTAButton>
         </div>
       </section>
@@ -134,8 +134,8 @@ export default function Contact() {
                       required
                     />
                   </div>
-                  <CTAButton type="submit" className="w-full" variant="primary">
-                    [Send Message]
+                  <CTAButton type="submit" className="w-full" variant="primary" textStyle="bracket">
+                    Send Message
                   </CTAButton>
                 </form>
               </div>
@@ -199,8 +199,8 @@ export default function Contact() {
                     </div>
                   ))}
                 </div>
-                <CTAButton className="w-full" variant="outline">
-                  [View Open Positions]
+                <CTAButton className="w-full" variant="outline" textStyle="bracket">
+                  View Open Positions
                 </CTAButton>
               </div>
             </div>
@@ -224,8 +224,8 @@ export default function Contact() {
                   robotics together.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                  <CTAButton variant="primary">[Start Collaboration]</CTAButton>
-                  <CTAButton variant="outline">[Learn More]</CTAButton>
+                  <CTAButton variant="primary" textStyle="bracket">Start Collaboration</CTAButton>
+                  <CTAButton variant="outline" textStyle="bracket">Learn More</CTAButton>
                 </div>
               </div>
             </div>

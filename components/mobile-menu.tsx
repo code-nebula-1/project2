@@ -8,9 +8,15 @@ import { useState } from "react";
 
 interface MobileMenuProps {
   className?: string;
+  isScrolled?: boolean;
+  shouldUseWhiteText?: boolean;
 }
 
-export const MobileMenu = ({ className }: MobileMenuProps) => {
+export const MobileMenu = ({
+  className,
+  isScrolled = false,
+  shouldUseWhiteText = false,
+}: MobileMenuProps) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const menuItems = [
@@ -30,7 +36,8 @@ export const MobileMenu = ({ className }: MobileMenuProps) => {
       <Dialog.Trigger asChild>
         <button
           className={cn(
-            "group lg:hidden p-2 text-foreground transition-colors",
+            "group lg:hidden p-2 transition-colors",
+            shouldUseWhiteText ? "text-white" : "text-foreground",
             className
           )}
           aria-label="Open menu"
@@ -65,7 +72,11 @@ export const MobileMenu = ({ className }: MobileMenuProps) => {
                 key={item.name}
                 href={item.href}
                 onClick={handleLinkClick}
-                className="text-xl font-mono uppercase text-foreground/60 transition-colors ease-out duration-150 hover:text-foreground/100 py-2"
+                className={`text-xl font-mono uppercase transition-colors ease-out duration-150 py-2 ${
+                  shouldUseWhiteText
+                    ? "text-white/60 hover:text-white/100"
+                    : "text-foreground/60 hover:text-foreground/100"
+                }`}
               >
                 {item.name}
               </Link>

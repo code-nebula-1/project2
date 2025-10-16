@@ -238,6 +238,7 @@ export default function Teams() {
                       href={`mailto:${teamMember.email}`}
                       variant="primary"
                       className="group"
+                      textStyle="default"
                     >
                       <Mail className="w-4 h-4 mr-2" />
                       Send Email
@@ -247,6 +248,7 @@ export default function Teams() {
                       href={`tel:${teamMember.phone}`}
                       variant="outline"
                       className="group"
+                      textStyle="default"
                     >
                       <Phone className="w-4 h-4 mr-2" />
                       Call Office

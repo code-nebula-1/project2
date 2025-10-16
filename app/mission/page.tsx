@@ -89,8 +89,8 @@ export default function Mission() {
             Pioneering breakthrough discoveries through interdisciplinary
             research and collaboration in robotics
           </p>
-          <CTAButton className="mt-14" size="lg">
-            [Join Our Mission]
+          <CTAButton className="mt-14" size="lg" textStyle="bracket">
+            Join Our Mission
           </CTAButton>
         </div>
       </section>
@@ -267,8 +267,8 @@ export default function Mission() {
               </div>
             </div>
 
-            <CTAButton variant="primary" size="lg">
-              [Join Our Mission]
+            <CTAButton variant="primary" size="lg" textStyle="bracket">
+              Join Our Mission
             </CTAButton>
           </div>
         </div>

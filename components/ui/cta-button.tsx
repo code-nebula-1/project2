@@ -2,34 +2,44 @@ import * as React from "react";
 import { Slot, Slottable } from "@radix-ui/react-slot";
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
-import { px } from "../utils";
 
 const ctaButtonVariants = cva(
-  "inline-flex relative uppercase border font-mono cursor-pointer items-center font-medium has-[>svg]:px-3 justify-center gap-2 whitespace-nowrap font-medium ease-out transition-all duration-300 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive [clip-path:polygon(var(--poly-roundness)_0,calc(100%_-_var(--poly-roundness))_0,100%_0,100%_calc(100%_-_var(--poly-roundness)),calc(100%_-_var(--poly-roundness))_100%,0_100%,0_calc(100%_-_var(--poly-roundness)),0_var(--poly-roundness))]",
+  "inline-flex relative items-center justify-center gap-2 whitespace-nowrap font-medium transition-all duration-300 ease-out cursor-pointer disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
   {
     variants: {
       variant: {
         primary:
-          "bg-background border-primary text-primary-foreground [&>[data-border]]:bg-primary [box-shadow:inset_0_0_54px_0px_var(--tw-shadow-color)] shadow-[#3B82F6] hover:shadow-[#3B82F6]/80 hover:scale-105",
+          "bg-gradient-to-r from-primary to-primary/80 text-primary-foreground shadow-lg hover:shadow-xl hover:shadow-primary/25 hover:scale-105 hover:from-primary/90 hover:to-primary/70 active:scale-95",
         secondary:
-          "bg-muted border-muted-foreground text-muted-foreground [&>[data-border]]:bg-muted-foreground hover:bg-muted-foreground hover:text-background hover:scale-105",
+          "bg-gradient-to-r from-muted to-muted/80 text-muted-foreground border border-border shadow-sm hover:shadow-md hover:scale-105 hover:from-muted/90 hover:to-muted/70 active:scale-95",
         outline:
-          "bg-transparent border-primary text-primary [&>[data-border]]:bg-primary hover:bg-primary hover:text-primary-foreground hover:scale-105",
+          "bg-transparent border-2 border-primary text-primary shadow-sm hover:bg-primary hover:text-primary-foreground hover:shadow-lg hover:shadow-primary/25 hover:scale-105 active:scale-95",
         ghost:
-          "bg-transparent border-transparent text-foreground hover:bg-muted hover:scale-105",
+          "bg-transparent text-foreground hover:bg-muted/50 hover:scale-105 active:scale-95",
         destructive:
-          "bg-destructive border-destructive text-destructive-foreground [&>[data-border]]:bg-destructive-foreground hover:bg-destructive/90 hover:scale-105",
+          "bg-gradient-to-r from-destructive to-destructive/80 text-destructive-foreground shadow-lg hover:shadow-xl hover:shadow-destructive/25 hover:scale-105 hover:from-destructive/90 hover:to-destructive/70 active:scale-95",
+        gradient:
+          "bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 text-white shadow-lg hover:shadow-xl hover:shadow-purple-500/25 hover:scale-105 hover:from-blue-500 hover:via-purple-500 hover:to-pink-500 active:scale-95",
+        modern:
+          "bg-white/10 backdrop-blur-sm border border-white/20 text-foreground shadow-lg hover:bg-white/20 hover:shadow-xl hover:scale-105 active:scale-95",
       },
       size: {
-        sm: "h-12 px-4 text-sm",
-        default: "h-16 px-6 text-base",
-        lg: "h-20 px-8 text-lg",
-        xl: "h-24 px-10 text-xl",
+        sm: "h-10 px-4 py-2.5 text-xs rounded-lg",
+        default: "h-12 px-6 py-3.5 text-sm rounded-xl",
+        lg: "h-14 px-8 py-4 text-base rounded-xl",
+        xl: "h-16 px-10 py-4.5 text-lg rounded-2xl",
+      },
+      textStyle: {
+        default: "font-sans",
+        mono: "font-mono uppercase tracking-wider",
+        bracket:
+          "font-mono uppercase tracking-wider before:content-['['] after:content-[']']",
       },
     },
     defaultVariants: {
       variant: "primary",
       size: "default",
+      textStyle: "default",
     },
   }
 );
@@ -49,6 +59,7 @@ const CTAButton = React.forwardRef<HTMLButtonElement, CTAButtonProps>(
       className,
       variant,
       size,
+      textStyle,
       asChild = false,
       href,
       target,
@@ -58,51 +69,18 @@ const CTAButton = React.forwardRef<HTMLButtonElement, CTAButtonProps>(
     },
     ref
   ) => {
-    const polyRoundness = 16;
-    const hypotenuse = polyRoundness * 2;
-    const hypotenuseHalf = polyRoundness / 2 - 1.5;
-
-    const buttonContent = (
-      <>
-        <span
-          data-border="top-left"
-          style={
-            {
-              "--h": px(hypotenuse),
-              "--hh": px(hypotenuseHalf),
-            } as React.CSSProperties
-          }
-          className="absolute inline-block w-[var(--h)] top-[var(--hh)] left-[var(--hh)] h-[2px] -rotate-45 origin-top -translate-x-1/2"
-        />
-        <span
-          data-border="bottom-right"
-          style={
-            {
-              "--h": px(hypotenuse),
-              "--hh": px(hypotenuseHalf),
-            } as React.CSSProperties
-          }
-          className="absolute w-[var(--h)] bottom-[var(--hh)] right-[var(--hh)] h-[2px] -rotate-45 translate-x-1/2"
-        />
-        <Slottable>{children}</Slottable>
-      </>
-    );
-
     if (href) {
       return (
         <a
           href={href}
           target={target}
           rel={rel}
-          style={
-            {
-              "--poly-roundness": px(polyRoundness),
-            } as React.CSSProperties
-          }
           data-slot="cta-button"
-          className={cn(ctaButtonVariants({ variant, size, className }))}
+          className={cn(
+            ctaButtonVariants({ variant, size, textStyle, className })
+          )}
         >
-          {buttonContent}
+          <Slottable>{children}</Slottable>
         </a>
       );
     }
@@ -111,16 +89,13 @@ const CTAButton = React.forwardRef<HTMLButtonElement, CTAButtonProps>(
       return (
         <Slot
           ref={ref}
-          style={
-            {
-              "--poly-roundness": px(polyRoundness),
-            } as React.CSSProperties
-          }
           data-slot="cta-button"
-          className={cn(ctaButtonVariants({ variant, size, className }))}
+          className={cn(
+            ctaButtonVariants({ variant, size, textStyle, className })
+          )}
           {...props}
         >
-          {buttonContent}
+          <Slottable>{children}</Slottable>
         </Slot>
       );
     }
@@ -128,16 +103,13 @@ const CTAButton = React.forwardRef<HTMLButtonElement, CTAButtonProps>(
     return (
       <button
         ref={ref}
-        style={
-          {
-            "--poly-roundness": px(polyRoundness),
-          } as React.CSSProperties
-        }
         data-slot="cta-button"
-        className={cn(ctaButtonVariants({ variant, size, className }))}
+        className={cn(
+          ctaButtonVariants({ variant, size, textStyle, className })
+        )}
         {...props}
       >
-        {buttonContent}
+        <Slottable>{children}</Slottable>
       </button>
     );
   }

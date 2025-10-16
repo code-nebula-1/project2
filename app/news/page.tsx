@@ -165,8 +165,8 @@ export default function News() {
             Discover the latest breakthroughs, publications, partnerships, and
             achievements from our robotics research lab.
           </p>
-          <CTAButton className="mt-14 group">
-            [Subscribe to Updates]
+          <CTAButton className="mt-14 group" textStyle="bracket">
+            Subscribe to Updates
             <ArrowRight className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" />
           </CTAButton>
         </div>
@@ -221,7 +221,7 @@ export default function News() {
                       <span className="text-sm text-foreground/60">
                         By {item.author}
                       </span>
-                      <CTAButton size="sm" className="group/btn">
+                      <CTAButton size="sm" className="group/btn" textStyle="default">
                         Read More
                         <ExternalLink className="ml-2 w-3 h-3 transition-transform group-hover/btn:translate-x-0.5" />
                       </CTAButton>
@@ -294,7 +294,7 @@ export default function News() {
                       <span className="text-xs text-foreground/60">
                         {item.author}
                       </span>
-                      <CTAButton size="sm" className="group/btn">
+                      <CTAButton size="sm" className="group/btn" textStyle="default">
                         Read More
                         <ArrowRight className="ml-1 w-3 h-3 transition-transform group-hover/btn:translate-x-0.5" />
                       </CTAButton>
@@ -357,11 +357,11 @@ export default function News() {
                       </p>
                     </div>
                     <div className="flex gap-2 pt-2">
-                      <CTAButton size="sm" className="group/btn">
+                      <CTAButton size="sm" className="group/btn" textStyle="default">
                         View Paper
                         <ExternalLink className="ml-2 w-3 h-3 transition-transform group-hover/btn:translate-x-0.5" />
                       </CTAButton>
-                      <CTAButton size="sm">Cite</CTAButton>
+                      <CTAButton size="sm" textStyle="default">Cite</CTAButton>
                     </div>
                   </div>
                 </CardContent>
@@ -405,7 +405,7 @@ export default function News() {
                       placeholder="Enter your email"
                       className="flex-1 px-4 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-primary bg-background"
                     />
-                    <CTAButton className="group" variant="primary">
+                    <CTAButton className="group" variant="primary" textStyle="default">
                       Subscribe
                       <ArrowRight className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" />
                     </CTAButton>
