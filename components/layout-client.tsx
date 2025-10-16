@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { GL } from "./gl";
+// import { GL } from "./gl";
 import { Leva } from "leva";
 
 interface LayoutClientProps {
@@ -13,7 +13,7 @@ export function LayoutClient({ children }: LayoutClientProps) {
 
   return (
     <div className="relative">
-      <GL hovering={hovering} />
+      {/* <GL hovering={hovering} /> */}
       <div className="relative z-10">{children}</div>
       <Leva hidden />
     </div>
