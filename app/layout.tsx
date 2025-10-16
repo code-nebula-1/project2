@@ -11,9 +11,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Skal Ventures",
-  description: "Investment strategies that outperform the market",
-  generator: "v0.app",
+  title: "Sam Reig Research Lab",
+  description: "Welcome to the Sam Reig Research Lab",
+  generator: "Sam Reig Research Lab",
 };
 
 export default function RootLayout({
