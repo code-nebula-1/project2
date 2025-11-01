@@ -22,7 +22,6 @@ export const MobileMenu = ({
   const menuItems = [
     { name: "Home", href: "/" },
     { name: "Contact", href: "/contact" },
-    { name: "Mission", href: "/mission" },
     { name: "Teams", href: "/teams" },
     { name: "News", href: "/news" },
   ];

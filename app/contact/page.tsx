@@ -1,6 +1,5 @@
 "use client";
 
-import { Pill } from "@/components/pill";
 import { CTAButton } from "@/components/ui/cta-button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -11,47 +10,21 @@ export default function Contact() {
     {
       icon: Mail,
       title: "Email",
-      details: "research@roboticslab.edu",
+      details: "uml.piers.lab@gmail.com",
       description: "General inquiries",
-    },
-    {
-      icon: Phone,
-      title: "Phone",
-      details: "+1 (555) 123-4567",
-      description: "Mon-Fri, 9AM-5PM EST",
     },
     {
       icon: MapPin,
       title: "Address",
-      details: "123 Innovation Drive",
-      description: "Robotics Research Center, Tech City, TC 12345",
+      details: "Southwick 304",
+      description: "University of Massachusetts Lowell, Lowell, MA 01854-3607",
     },
-  ];
-
-  const opportunities = [
-    "PhD Research Positions",
-    "Postdoctoral Fellowships",
-    "Undergraduate Internships",
-    "Industry Collaborations",
   ];
 
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="flex flex-col h-svh justify-center text-center relative">
-        <div className="pb-16">
-          <Pill className="mb-6">GET IN TOUCH</Pill>
-          <h1 className="text-5xl sm:text-6xl md:text-7xl font-sentient">
-            Contact Our <i className="font-light">Research Lab</i>
-          </h1>
-          <p className="font-mono text-sm sm:text-base text-foreground/60 text-balance mt-8 max-w-[440px] mx-auto">
-            Ready to collaborate, join our research community, or learn more
-            about our work? We'd love to hear from you.
-          </p>
-          <CTAButton className="mt-14" size="lg" textStyle="bracket">
-            Send Message
-          </CTAButton>
-        </div>
+      <section className="h-[20svh]">
       </section>
 
       {/* Contact Form & Info */}
@@ -179,54 +152,6 @@ export default function Contact() {
                     </div>
                   );
                 })}
-              </div>
-
-              <div className="p-6 rounded-lg border border-border bg-card">
-                <div className="flex items-center space-x-3 mb-4">
-                  <User className="w-6 h-6 text-primary" />
-                  <h3 className="text-lg font-semibold">
-                    Research Opportunities
-                  </h3>
-                </div>
-                <p className="text-foreground/70 mb-4 text-pretty">
-                  Interested in joining our research team?
-                </p>
-                <div className="space-y-2 mb-6">
-                  {opportunities.map((opportunity, index) => (
-                    <div key={index} className="flex items-center space-x-3">
-                      <div className="w-2 h-2 bg-primary rounded-full"></div>
-                      <span className="text-sm">{opportunity}</span>
-                    </div>
-                  ))}
-                </div>
-                <CTAButton className="w-full" variant="outline" textStyle="bracket">
-                  View Open Positions
-                </CTAButton>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Call to Action */}
-      <section className="relative py-24 px-4">
-        <div className="container mx-auto max-w-7xl">
-          <div className="max-w-4xl mx-auto text-center">
-            <div className="p-12 rounded-lg border border-border bg-card">
-              <div className="space-y-6">
-                <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto">
-                  <MessageSquare className="w-8 h-8 text-primary" />
-                </div>
-                <h2 className="text-3xl font-bold">Ready to Collaborate?</h2>
-                <p className="text-lg text-foreground/70 leading-relaxed text-pretty">
-                  Whether you're a researcher, student, or industry partner, we
-                  welcome opportunities to collaborate and advance the field of
-                  robotics together.
-                </p>
-                <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                  <CTAButton variant="primary" textStyle="bracket">Start Collaboration</CTAButton>
-                  <CTAButton variant="outline" textStyle="bracket">Learn More</CTAButton>
-                </div>
               </div>
             </div>
           </div>

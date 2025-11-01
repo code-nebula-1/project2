@@ -54,8 +54,12 @@ export const Header = () => {
             }`}
           />
         </Link>
-        <nav className="flex max-lg:hidden absolute left-1/2 -translate-x-1/2 items-center gap-x-10">
-          {["Home", "Contact", "Mission", "Teams", "News"].map((item) => (
+        <nav className={`flex max-lg:hidden absolute left-1/2 -translate-x-1/2 items-center gap-x-10 p-2 ${
+                shouldUseWhiteText
+                  ? "bg-black"
+                  : "bg-white"
+                }`}>
+          {["Home", "Contact", "Teams", "News"].map((item) => (
             <Link
               className={`uppercase inline-block font-mono duration-150 transition-colors ease-out ${
                 shouldUseWhiteText
