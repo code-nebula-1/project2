@@ -5,6 +5,7 @@ import { ResearchAreas } from "@/components/research-areas";
 import { FeaturedProjects } from "@/components/featured-projects";
 import { Publications } from "@/components/publications";
 import { Contact } from "@/components/contact";
+import { Values } from "@/components/value"
 
 export default function Home() {
   return (
@@ -13,7 +14,7 @@ export default function Home() {
       <ResearchAreas />
       <FeaturedProjects />
       <Publications />
-      <Contact />
+      <Values />
     </>
   );
 }
