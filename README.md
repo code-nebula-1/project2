@@ -34,3 +34,6 @@ Open [http://localhost:3000](http://localhost:3000) to view the website.
 - Content management for non-technical users
 - Admin panel for code-level changes
 - Fun UI elements and Easter eggs
+
+## Notes (Grading Purposes)
+- Database uploaded initially in the setup-db-with-neon branch
