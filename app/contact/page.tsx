@@ -44,7 +44,7 @@ export default function Contact() {
               </div>
 
               <div className="p-8 rounded-lg border border-border bg-card">
-                <form className="space-y-6">
+                {/*<form className="space-y-6">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
                       <label
@@ -110,7 +110,13 @@ export default function Contact() {
                   <CTAButton type="submit" className="w-full" variant="primary" textStyle="bracket">
                     Send Message
                   </CTAButton>
-                </form>
+                </form>*/}
+                <iframe 
+                  src="https://docs.google.com/forms/d/e/1FAIpQLSfDszT5avdzeiYpIUGmxOGqH0_Rt4pIErqUdT4q8e1BmcQLCA/viewform?embedded=true" 
+                  width="550" 
+                  height="821">
+                    Loading…
+                </iframe>
               </div>
             </div>
 
