@@ -12,8 +12,6 @@ export default function Home() {
     <>
       <Hero />
       <ResearchAreas />
-      <FeaturedProjects />
-      <Publications />
       <Values />
     </>
   );

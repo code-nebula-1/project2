@@ -38,7 +38,7 @@ export function Hero() {
         }
       </div>
 
-      {/* Content */}
+      {/* Content 
       <div className="relative z-10 pb-16">
         <h1 className="text-5xl sm:text-6xl md:text-7xl font-sentient text-white">
           Advancing the <br />
@@ -55,7 +55,7 @@ export function Hero() {
         <CTAButton href="/contact" className="mt-14 sm:hidden" size="sm" textStyle="bracket">
           Join Our Research
         </CTAButton>
-      </div>
+      </div>*/}
     </div>
   );
 }
