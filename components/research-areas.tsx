@@ -14,9 +14,9 @@ import {
 
 export function ResearchAreas() {
   const featuredArea = {
-    title: "Human-Robot Interaction",
+    title: "PIERS",
     description:
-      "Investigating how humans and robots can work together effectively in collaborative environments, focusing on trust, communication, and intuitive interfaces that bridge the gap between human cognition and robotic capabilities.",
+      "Also known as People, Intelligence, Environments, Robots, and Social outcomes (PIERS) Lab. Broadly, we seek to understand how robots, conversational agents, and other emerging technologies can be appropriately integrated into socially complex scenarios.",
     icon: Users,
     keyFocus: [
       "Trust and Communication",
@@ -34,60 +34,28 @@ export function ResearchAreas() {
 
   const featureCards = [
     {
-      title: "Human-Computer Interaction",
+      title: "Studying",
       description:
-        "Designing and evaluating user interfaces that enhance human capabilities, with emphasis on accessibility, usability, and user experience in complex systems.",
+        "How robots’ behaviors influence humans’ trust, acceptance, and decision-making.",
       icon: Cpu,
-      keyAreas: [
-        "Accessibility Design",
-        "Usability Testing",
-        "User Experience",
-        "Complex Systems",
-      ],
     },
     {
-      title: "Collaborative Robotics",
+      title: "Simulating",
       description:
-        "Developing robotic systems that can safely and effectively collaborate with human workers in manufacturing, healthcare, and service environments.",
-      icon: HandHeart,
-      keyAreas: [
-        "Safety Protocols",
-        "Manufacturing",
-        "Healthcare",
-        "Service Industries",
-      ],
+        "Interactions in future smart environments to determine how people and robots might work productively and live well within them.",
+      icon: Cpu,
     },
     {
-      title: "User Experience Research",
+      title: "Designing",
       description:
-        "Studying how people interact with technology through empirical research methods, usability testing, and user-centered design approaches.",
-      icon: Eye,
-      keyAreas: [
-        "Empirical Methods",
-        "Usability Testing",
-        "User-Centered Design",
-        "Technology Interaction",
-      ],
+        "Intelligent systems that leverage both human-like and non-human-like interaction capabilities toward positive social outcomes.",
+      icon: Cpu,
     },
   ];
 
   return (
     <section className="relative py-24 px-4">
       <div className="container mx-auto max-w-7xl">
-        {/* Header Content */}
-        <div className="text-center mb-16">
-          <p className="text-sm font-medium text-primary mb-4 tracking-wide uppercase">
-            RESEARCH EXCELLENCE
-          </p>
-          <h2 className="text-4xl md:text-5xl font-bold mb-6 text-balance">
-            Elevate your research to the next level
-          </h2>
-          <p className="text-lg text-foreground/70 max-w-3xl mx-auto text-pretty">
-            Whether you're managing complex projects, collaborating with your
-            team, or customizing your research workflow, our interdisciplinary
-            approach empowers you to work smarter and accomplish more.
-          </p>
-        </div>
 
         {/* Featured Card */}
         <div className="mb-12">
@@ -108,14 +76,14 @@ export function ResearchAreas() {
                         {featuredArea.title}
                       </h3>
                     </div>
-                    <p className="text-foreground/70 text-lg leading-relaxed max-w-2xl">
+                    <p className="text-foreground/70 text-lg leading-relaxed">
                       {featuredArea.description}
                     </p>
                   </div>
 
-                  {/* Research Focus Areas */}
+                  {/* Research Focus Areas
                   <div className="w-full lg:w-96 space-y-6">
-                    {/* Key Focus Areas */}
+                    {/* Key Focus Areas
                     <div className="space-y-3">
                       <h4 className="text-sm font-medium text-foreground/80 uppercase tracking-wide">
                         Key Focus Areas
@@ -134,7 +102,7 @@ export function ResearchAreas() {
                       </div>
                     </div>
 
-                    {/* Applications */}
+                    {/* Applications
                     <div className="space-y-3">
                       <h4 className="text-sm font-medium text-foreground/80 uppercase tracking-wide">
                         Applications
@@ -150,7 +118,7 @@ export function ResearchAreas() {
                         ))}
                       </div>
                     </div>
-                  </div>
+                  </div>*/}
                 </div>
               </div>
             </div>
@@ -178,23 +146,6 @@ export function ResearchAreas() {
                   <p className="text-foreground/70 leading-relaxed mb-6 flex-1">
                     {card.description}
                   </p>
-
-                  {/* Key Areas */}
-                  <div className="mt-auto space-y-3">
-                    <h4 className="text-xs font-medium text-foreground/80 uppercase tracking-wide">
-                      Key Areas
-                    </h4>
-                    <div className="flex flex-wrap gap-2">
-                      {card.keyAreas.map((area, areaIndex) => (
-                        <span
-                          key={areaIndex}
-                          className="px-2 py-1 text-xs font-medium bg-foreground/5 text-foreground/70 rounded border border-foreground/10"
-                        >
-                          {area}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
                 </div>
               </div>
             </div>

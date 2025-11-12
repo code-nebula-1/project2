@@ -17,7 +17,7 @@ export default function Teams() {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="h-[20svh]">
+      <section className="h-[5svh]">
       </section>
 
       {/* Main Profile Section */}

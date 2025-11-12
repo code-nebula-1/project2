@@ -24,6 +24,7 @@ export const MobileMenu = ({
     { name: "Contact", href: "/contact" },
     { name: "Teams", href: "/teams" },
     { name: "News", href: "/news" },
+    { name: "publish", href: "/publication" },
   ];
 
   const handleLinkClick = () => {
