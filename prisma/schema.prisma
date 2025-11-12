@@ -1,0 +1,52 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  password  String
+  name      String?
+  role      String   @default("user")
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+  
+  // Relations
+  publications Publication[]
+  
+  @@map("users")
+}
+
+model Publication {
+  id          String   @id @default(cuid())
+  title       String
+  abstract    String?  @db.Text
+  authors     String[]
+  journal     String?
+  year        Int?
+  doi         String?  @unique
+  url         String?
+  pdfUrl      String?  @map("pdf_url")
+  citationCount Int?   @default(0) @map("citation_count")
+  
+  // Audit fields
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+  createdById String   @map("created_by_id")
+  
+  // Relations
+  createdBy   User     @relation(fields: [createdById], references: [id], onDelete: Cascade)
+  
+  @@map("publications")
+  @@index([year])
+  @@index([createdById])
+}
+
