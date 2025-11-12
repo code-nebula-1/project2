@@ -34,9 +34,7 @@ export const Header = () => {
 
   return (
     <div
-      className={`fixed z-50 top-0 left-0 w-full transition-all duration-300 ease-out ${
-        isScrolled ? "pt-4 md:pt-6" : "pt-8 md:pt-14"
-      } ${showBackground ? "bg-background" : ""}`}
+      className={"fixed z-50 top-0 left-0 w-full transition-all duration-300 ease-out bg-background"}
     >
       <div
         className={`absolute inset-0 ${backdropBlur} transition-all duration-300`}
@@ -50,18 +48,14 @@ export const Header = () => {
         >
           <Logo
             className={`transition-all duration-300 ${
-              isScrolled ? "w-[80px] md:w-[100px]" : "w-[100px] md:w-[120px]"
+              isScrolled ? "w-[70px] md:w-[90px]" : "w-[70px] md:w-[90px]"
             }`}
           />
         </Link>
-        <nav className="flex max-lg:hidden absolute left-1/2 -translate-x-1/2 items-center gap-x-10">
-          {["Home", "Contact", "Mission", "Teams", "News"].map((item) => (
+        <nav className={"flex max-lg:hidden absolute left-1/2 -translate-x-1/2 items-center gap-x-10 p-2 "}>
+          {["Home", "Contact", "Teams", "News", "Publication"].map((item) => (
             <Link
-              className={`uppercase inline-block font-mono duration-150 transition-colors ease-out ${
-                shouldUseWhiteText
-                  ? "text-white/60 hover:text-white/100"
-                  : "text-foreground/60 hover:text-foreground/100"
-              }`}
+              className={"uppercase inline-block font-mono duration-150 transition-colors ease-out text-foreground/60 hover:text-foreground/100"}
               href={item === "Home" ? "/" : `/${item.toLowerCase()}`}
               key={item}
             >

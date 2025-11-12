@@ -2,6 +2,15 @@
 
 A dynamic website for our research laboratory that showcases team members, projects, and provides an engaging user experience.
 
+**Live Site:** https://web-systems-sigma.vercel.app/
+
+## Admin Access
+
+**Admin Panel:** https://web-systems-sigma.vercel.app/admin/login
+
+- **Email:** admin@admin.com
+- **Password:** admin1234
+
 ## Project Overview
 
 This website serves as the digital home for our research lab, featuring:
@@ -26,7 +35,7 @@ Open [http://localhost:3000](http://localhost:3000) to view the website.
 
 - **Frontend**: Next.js with React
 - **Styling**: CSS Modules
-- **Deployment**: Vercel (planned)
+- **Deployment**: Vercel
 
 ## Features (Planned)
 
@@ -34,3 +43,6 @@ Open [http://localhost:3000](http://localhost:3000) to view the website.
 - Content management for non-technical users
 - Admin panel for code-level changes
 - Fun UI elements and Easter eggs
+
+## Notes (Grading Purposes)
+- Database uploaded initially in the setup-db-with-neon branch

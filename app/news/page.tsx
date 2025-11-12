@@ -1,6 +1,5 @@
 "use client";
 
-import { Pill } from "@/components/pill";
 import { CTAButton } from "@/components/ui/cta-button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -79,38 +78,6 @@ export default function News() {
     },
   ];
 
-  const publications = [
-    {
-      title:
-        "Deep Learning for Autonomous Robot Navigation in Dynamic Environments",
-      authors: "Chen, S., Rodriguez, M., & Park, J.",
-      journal: "Journal of Robotics Research",
-      year: "2024",
-      doi: "10.1007/s12345-024-00123-4",
-    },
-    {
-      title: "Human-Robot Collaboration in Manufacturing: A Survey",
-      authors: "Watson, E., Johnson, S., & Thompson, L.",
-      journal: "IEEE Transactions on Robotics",
-      year: "2024",
-      doi: "10.1109/TRO.2024.0012345",
-    },
-    {
-      title: "Swarm Intelligence for Multi-Robot Coordination",
-      authors: "Kumar, A., Santos, M., & Wilson, T.",
-      journal: "Autonomous Robots",
-      year: "2023",
-      doi: "10.1007/s10514-023-00123-4",
-    },
-    {
-      title: "Machine Learning Approaches for Robotic Manipulation",
-      authors: "Park, J., Chen, D., & Kim, R.",
-      journal: "International Journal of Robotics Research",
-      year: "2023",
-      doi: "10.1177/02783649231234567",
-    },
-  ];
-
   const getCategoryIcon = (category: string) => {
     switch (category) {
       case "Research":
@@ -155,33 +122,15 @@ export default function News() {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="flex flex-col h-svh justify-center text-center relative">
-        <div className="pb-16">
-          <Pill className="mb-6">LATEST NEWS</Pill>
-          <h1 className="text-5xl sm:text-6xl md:text-7xl font-sentient">
-            Stay Updated with Our <i className="font-light">Research News</i>
-          </h1>
-          <p className="font-mono text-sm sm:text-base text-foreground/60 text-balance mt-8 max-w-[440px] mx-auto">
-            Discover the latest breakthroughs, publications, partnerships, and
-            achievements from our robotics research lab.
-          </p>
-          <CTAButton className="mt-14 group" textStyle="bracket">
-            Subscribe to Updates
-            <ArrowRight className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" />
-          </CTAButton>
-        </div>
+      <section className="h-[20svh]">
       </section>
-
-      {/* Featured News */}
+      {/* blog post */}
       <section className="relative py-24 px-4">
         <div className="container mx-auto max-w-7xl">
           <div className="mb-16">
             <h2 className="text-4xl md:text-5xl font-bold mb-4 text-balance">
-              Featured Stories
+              Blog Post
             </h2>
-            <p className="text-lg text-foreground/70 max-w-2xl text-pretty">
-              Our most important research updates and breakthrough announcements
-            </p>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
@@ -233,19 +182,6 @@ export default function News() {
           </div>
         </div>
       </section>
-
-      {/* Section Divider */}
-      <div className="relative py-12 px-4">
-        <div className="container mx-auto max-w-7xl">
-          <div className="flex items-center justify-center">
-            <div className="flex-1 h-px bg-border"></div>
-            <div className="px-6">
-              <Pill>ALL NEWS</Pill>
-            </div>
-            <div className="flex-1 h-px bg-border"></div>
-          </div>
-        </div>
-      </div>
 
       {/* All News */}
       <section className="relative py-24 px-4 bg-muted/30">
@@ -303,116 +239,6 @@ export default function News() {
                 </Card>
               );
             })}
-          </div>
-        </div>
-      </section>
-
-      {/* Section Divider */}
-      <div className="relative py-12 px-4">
-        <div className="container mx-auto max-w-7xl">
-          <div className="flex items-center justify-center">
-            <div className="flex-1 h-px bg-border"></div>
-            <div className="px-6">
-              <Pill>PUBLICATIONS</Pill>
-            </div>
-            <div className="flex-1 h-px bg-border"></div>
-          </div>
-        </div>
-      </div>
-
-      {/* Publications */}
-      <section className="relative py-24 px-4">
-        <div className="container mx-auto max-w-7xl">
-          <div className="mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4 text-balance">
-              Recent Publications
-            </h2>
-            <p className="text-lg text-foreground/70 max-w-2xl text-pretty">
-              Our latest research contributions to the robotics community
-            </p>
-          </div>
-
-          <div className="max-w-4xl mx-auto space-y-6">
-            {publications.map((pub, index) => (
-              <Card
-                key={index}
-                className="group overflow-hidden hover:shadow-lg transition-all duration-300 border-border bg-card hover:bg-card/80"
-              >
-                <CardContent className="p-6">
-                  <div className="space-y-4">
-                    <h3 className="text-lg font-semibold group-hover:text-primary transition-colors">
-                      {pub.title}
-                    </h3>
-                    <div className="space-y-2">
-                      <p className="text-foreground/70">
-                        <span className="font-medium">Authors:</span>{" "}
-                        {pub.authors}
-                      </p>
-                      <p className="text-foreground/70">
-                        <span className="font-medium">Journal:</span>{" "}
-                        {pub.journal}, {pub.year}
-                      </p>
-                      <p className="text-sm text-primary font-mono">
-                        <span className="font-medium">DOI:</span> {pub.doi}
-                      </p>
-                    </div>
-                    <div className="flex gap-2 pt-2">
-                      <CTAButton size="sm" className="group/btn" textStyle="default">
-                        View Paper
-                        <ExternalLink className="ml-2 w-3 h-3 transition-transform group-hover/btn:translate-x-0.5" />
-                      </CTAButton>
-                      <CTAButton size="sm" textStyle="default">Cite</CTAButton>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Section Divider */}
-      <div className="relative py-12 px-4">
-        <div className="container mx-auto max-w-7xl">
-          <div className="flex items-center justify-center">
-            <div className="flex-1 h-px bg-border"></div>
-            <div className="px-6">
-              <Pill>STAY CONNECTED</Pill>
-            </div>
-            <div className="flex-1 h-px bg-border"></div>
-          </div>
-        </div>
-      </div>
-
-      {/* Newsletter Signup */}
-      <section className="relative py-24 px-4 bg-muted/30">
-        <div className="container mx-auto max-w-7xl">
-          <div className="max-w-4xl mx-auto text-center">
-            <Card className="overflow-hidden">
-              <CardContent className="p-12">
-                <div className="space-y-6">
-                  <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto">
-                    <FileText className="w-8 h-8 text-primary" />
-                  </div>
-                  <h2 className="text-3xl font-bold">Stay Updated</h2>
-                  <p className="text-lg text-foreground/70 leading-relaxed text-pretty">
-                    Subscribe to our newsletter to receive the latest news,
-                    publications, and research updates directly in your inbox.
-                  </p>
-                  <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
-                    <input
-                      type="email"
-                      placeholder="Enter your email"
-                      className="flex-1 px-4 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-primary bg-background"
-                    />
-                    <CTAButton className="group" variant="primary" textStyle="default">
-                      Subscribe
-                      <ArrowRight className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" />
-                    </CTAButton>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
           </div>
         </div>
       </section>

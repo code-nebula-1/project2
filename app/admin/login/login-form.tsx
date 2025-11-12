@@ -78,10 +78,7 @@ export function LoginForm() {
         )}
       </Button>
 
-      <div className="text-sm text-gray-600 text-center mt-4">
-        <p>Default credentials:</p>
-        <p className="font-mono text-xs mt-1">admin@admin.com / admin1234</p>
-      </div>
+      
     </form>
   );
 }
