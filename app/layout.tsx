@@ -1,9 +1,7 @@
 import type { Metadata } from "next";
 import { Geist_Mono } from "next/font/google";
-import localFont from "next/font/local";
 import "./globals.css";
-import { Header } from "@/components/header";
-import { LayoutClient } from "@/components/layout-client";
+
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
@@ -27,10 +25,7 @@ export default function RootLayout({
         className={`${geistMono.variable} antialiased`}
         suppressHydrationWarning
       >
-        <LayoutClient>
-          <Header />
-          {children}
-        </LayoutClient>
+       {children}
       </body>
     </html>
   );

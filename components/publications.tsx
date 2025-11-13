@@ -10,9 +10,10 @@ import {
   Download,
   Eye,
 } from "lucide-react";
+import { Publication } from "@/actions/publications";
 
-export function Publications() {
-  const publications = [
+export function Publications({ publications }: { publications: Publication[] }) {
+ /*  const publications = [
     {
       title:
         "Deep Learning for Autonomous Robot Navigation in Dynamic Environments",
@@ -42,7 +43,7 @@ export function Publications() {
       year: "2023",
       doi: "10.1177/02783649231234567",
     },
-  ];
+  ]; */
 
   const getCategoryColor = (category: string) => {
     const colors = {
