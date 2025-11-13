@@ -12,10 +12,26 @@ const buttonVariants = cva(
       variant: {
         default:
           "bg-background border-primary text-primary-foreground [&>[data-border]]:bg-primary [box-shadow:inset_0_0_54px_0px_var(--tw-shadow-color)] shadow-[#3B82F6] hover:shadow-[#3B82F6]/80",
+        admin:
+          "normal-case rounded-md font-sans bg-primary text-primary-foreground shadow hover:bg-primary/90 [clip-path:none] border-0",
+        outline:
+          "normal-case rounded-md font-sans border border-input bg-background shadow-sm hover:bg-accent hover:text-accent-foreground [clip-path:none]",
+        destructive:
+          "normal-case rounded-md font-sans bg-destructive text-destructive-foreground shadow-sm hover:bg-destructive/90 [clip-path:none] border-0",
+        secondary:
+          "normal-case rounded-md font-sans bg-secondary text-secondary-foreground shadow-sm hover:bg-secondary/80 [clip-path:none] border-0",
+        ghost:
+          "normal-case rounded-md font-sans hover:bg-accent hover:text-accent-foreground [clip-path:none] border-0",
+        link:
+          "normal-case rounded-md font-sans text-primary underline-offset-4 hover:underline [clip-path:none] border-0",
       },
       size: {
         default: "h-16 px-6 text-base",
         sm: "h-14 px-6 text-sm",
+        admin: "h-9 px-4 py-2 text-sm",
+        "admin-sm": "h-8 px-3 text-xs",
+        "admin-lg": "h-10 px-8 text-sm",
+        "admin-icon": "h-9 w-9",
       },
     },
     defaultVariants: {
