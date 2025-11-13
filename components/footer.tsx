@@ -4,7 +4,7 @@ export function Footer() {
       <div className="container mx-auto px-6 py-8">
         <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
           <div className="text-center text-sm text-muted-foreground md:text-left">
-            <p>© {new Date().getFullYear()} Sam Reig Research Lab. All rights reserved.</p>
+            <p>© {new Date().getFullYear()} Research Lab. All rights reserved.</p>
           </div>
           
           <div className="flex flex-wrap items-center justify-center gap-6 text-sm text-muted-foreground">
