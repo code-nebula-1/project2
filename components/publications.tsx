@@ -13,37 +13,37 @@ import {
 import { Publication } from "@/actions/publications";
 
 export function Publications({ publications }: { publications: Publication[] }) {
- /*  const publications = [
-    {
-      title:
-        "Deep Learning for Autonomous Robot Navigation in Dynamic Environments",
-      authors: "Chen, S., Rodriguez, M., & Park, J.",
-      journal: "Journal of Robotics Research",
-      year: "2024",
-      doi: "10.1007/s12345-024-00123-4",
-    },
-    {
-      title: "Human-Robot Collaboration in Manufacturing: A Survey",
-      authors: "Watson, E., Johnson, S., & Thompson, L.",
-      journal: "IEEE Transactions on Robotics",
-      year: "2024",
-      doi: "10.1109/TRO.2024.0012345",
-    },
-    {
-      title: "Swarm Intelligence for Multi-Robot Coordination",
-      authors: "Kumar, A., Santos, M., & Wilson, T.",
-      journal: "Autonomous Robots",
-      year: "2023",
-      doi: "10.1007/s10514-023-00123-4",
-    },
-    {
-      title: "Machine Learning Approaches for Robotic Manipulation",
-      authors: "Park, J., Chen, D., & Kim, R.",
-      journal: "International Journal of Robotics Research",
-      year: "2023",
-      doi: "10.1177/02783649231234567",
-    },
-  ]; */
+  /*  const publications = [
+     {
+       title:
+         "Deep Learning for Autonomous Robot Navigation in Dynamic Environments",
+       authors: "Chen, S., Rodriguez, M., & Park, J.",
+       journal: "Journal of Robotics Research",
+       year: "2024",
+       doi: "10.1007/s12345-024-00123-4",
+     },
+     {
+       title: "Human-Robot Collaboration in Manufacturing: A Survey",
+       authors: "Watson, E., Johnson, S., & Thompson, L.",
+       journal: "IEEE Transactions on Robotics",
+       year: "2024",
+       doi: "10.1109/TRO.2024.0012345",
+     },
+     {
+       title: "Swarm Intelligence for Multi-Robot Coordination",
+       authors: "Kumar, A., Santos, M., & Wilson, T.",
+       journal: "Autonomous Robots",
+       year: "2023",
+       doi: "10.1007/s10514-023-00123-4",
+     },
+     {
+       title: "Machine Learning Approaches for Robotic Manipulation",
+       authors: "Park, J., Chen, D., & Kim, R.",
+       journal: "International Journal of Robotics Research",
+       year: "2023",
+       doi: "10.1177/02783649231234567",
+     },
+   ]; */
 
   const getCategoryColor = (category: string) => {
     const colors = {
@@ -64,55 +64,46 @@ export function Publications({ publications }: { publications: Publication[] }) 
     <section className="relative py-6 px-4 bg-muted/20">
       <div className="container mx-auto max-w-7xl">
         {/* Publications */}
-      <section className="relative py-24 px-4">
-        <div className="container mx-auto max-w-7xl">
-          <div className="mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4 text-balance">
-              Recent Publications
-            </h2>
-            <p className="text-lg text-foreground/70 max-w-2xl text-pretty">
-              Our latest research contributions to the robotics community
-            </p>
-          </div>
-
-          <div className="max-w-4xl mx-auto space-y-6">
-            {publications.map((pub, index) => (
-              <Card
-                key={index}
-                className="group overflow-hidden hover:shadow-lg transition-all duration-300 border-border bg-card hover:bg-card/80"
-              >
-                <CardContent className="p-6">
-                  <div className="space-y-4">
-                    <h3 className="text-lg font-semibold group-hover:text-primary transition-colors">
-                      {pub.title}
-                    </h3>
-                    <div className="space-y-2">
-                      <p className="text-foreground/70">
-                        <span className="font-medium">Authors:</span>{" "}
-                        {pub.authors}
-                      </p>
-                      <p className="text-foreground/70">
-                        <span className="font-medium">Journal:</span>{" "}
-                        {pub.journal}, {pub.year}
-                      </p>
-                      <p className="text-sm text-primary font-mono">
-                        <span className="font-medium">DOI:</span> {pub.doi}
-                      </p>
+        <section className="relative py-24 px-4">
+          <div className="">
+            <div className="max-w-4xl mx-auto space-y-6">
+              {publications.map((pub, index) => (
+                <Card
+                  key={index}
+                  className="group overflow-hidden hover:shadow-lg transition-all duration-300 border-border bg-card hover:bg-card/80"
+                >
+                  <CardContent className="p-6">
+                    <div className="space-y-4">
+                      <h3 className="text-lg font-semibold group-hover:text-primary transition-colors">
+                        {pub.title}
+                      </h3>
+                      <div className="space-y-2">
+                        <p className="text-foreground/70">
+                          <span className="font-medium">Authors:</span>{" "}
+                          {pub.authors}
+                        </p>
+                        <p className="text-foreground/70">
+                          <span className="font-medium">Journal:</span>{" "}
+                          {pub.journal}, {pub.year}
+                        </p>
+                        <p className="text-sm text-primary font-mono">
+                          <span className="font-medium">DOI:</span> {pub.doi}
+                        </p>
+                      </div>
+                      <div className="flex gap-2 pt-2">
+                        <CTAButton size="sm" className="group/btn" textStyle="default">
+                          View Paper
+                          <ExternalLink className="ml-2 w-3 h-3 transition-transform group-hover/btn:translate-x-0.5" />
+                        </CTAButton>
+                        <CTAButton size="sm" textStyle="default">Cite</CTAButton>
+                      </div>
                     </div>
-                    <div className="flex gap-2 pt-2">
-                      <CTAButton size="sm" className="group/btn" textStyle="default">
-                        View Paper
-                        <ExternalLink className="ml-2 w-3 h-3 transition-transform group-hover/btn:translate-x-0.5" />
-                      </CTAButton>
-                      <CTAButton size="sm" textStyle="default">Cite</CTAButton>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
       </div>
     </section>
   );

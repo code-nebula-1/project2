@@ -195,15 +195,6 @@ export function Team() {
   return (
     <section className="relative py-24 px-4">
       <div className="container mx-auto max-w-7xl">
-        {/* Header */}
-        <div className="mb-16 text-center">
-          <h2 className="text-4xl md:text-6xl font-bold mb-4 bg-gradient-to-r from-foreground via-foreground/90 to-foreground/70 bg-clip-text text-transparent">
-            Meet the Team
-          </h2>
-          <p className="text-lg text-foreground/60 max-w-2xl mx-auto">
-            Our diverse team of researchers, faculty, and students working at the intersection of human-computer interaction and robotics.
-          </p>
-        </div>
 
         {/* Faculty Advisors Section */}
         {facultyAdvisors.length > 0 && (
