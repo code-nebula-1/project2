@@ -5,7 +5,7 @@ export const RESEARCH_VIDEOS = [
         title: "Human-Robot Interaction",
         description: "Exploring intuitive interfaces between humans and robotic systems",
         fallback:
-            "https://images.pexels.com/photos/2599244/pexels-photo-2599244.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+            "https://images.pexels.com/photos/3913031/pexels-photo-3913031.jpeg",
     },
     {
         id: 2,
@@ -13,7 +13,7 @@ export const RESEARCH_VIDEOS = [
         title: "Autonomous Navigation",
         description: "Advanced algorithms for real-time environmental mapping and obstacle avoidance",
         fallback:
-            "https://images.pexels.com/photos/2599244/pexels-photo-2599244.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+            "https://images.pexels.com/photos/844874/pexels-photo-844874.jpeg",
     },
     {
         id: 3,
@@ -21,6 +21,6 @@ export const RESEARCH_VIDEOS = [
         title: "Machine Learning in Robotics",
         description: "Teaching robots to learn and adapt through reinforcement learning",
         fallback:
-            "https://images.pexels.com/photos/2599244/pexels-photo-2599244.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+            "https://images.pexels.com/photos/17483868/pexels-photo-17483868.jpeg",
     },
 ];
