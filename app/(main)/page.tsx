@@ -7,13 +7,15 @@ import { Publications } from "@/components/publications";
 import { Contact } from "@/components/contact";
 import { Values } from "@/components/value"
 import { Header } from "@/components/header";
+import { ResearchInAction } from "@/components/research-in-action";
 
 export default function Home() {
   return (
     <>
-     <Header />
+      <Header />
       <Hero />
       <ResearchAreas />
+      <ResearchInAction />
       <Values />
       <Contact />
     </>
