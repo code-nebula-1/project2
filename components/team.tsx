@@ -108,11 +108,6 @@ export function Team() {
     }
   ];
 
-  // Group members by category
-  const facultyAdvisors = members.filter(m => m.role.includes("Professor"));
-  const phdStudents = members.filter(m => m.role.includes("PhD"));
-  const undergraduates = members.filter(m => m.role.includes("Undergraduate"));
-
   const renderMemberCard = (member: TeamMember) => (
     <Dialog key={member.id}>
       <DialogTrigger asChild>
@@ -195,42 +190,11 @@ export function Team() {
   return (
     <section className="relative py-24 px-4">
       <div className="container mx-auto max-w-7xl">
-
-        {/* Faculty Advisors Section */}
-        {facultyAdvisors.length > 0 && (
-          <div className="mb-16">
-            <h3 className="text-2xl font-bold mb-8 text-foreground/90 border-l-4 border-primary pl-4">
-              Faculty Advisors
-            </h3>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-              {facultyAdvisors.map(renderMemberCard)}
-            </div>
+        <div className="mb-16">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            {members.map(renderMemberCard)}
           </div>
-        )}
-
-        {/* PhD Students Section */}
-        {phdStudents.length > 0 && (
-          <div className="mb-16">
-            <h3 className="text-2xl font-bold mb-8 text-foreground/90 border-l-4 border-primary pl-4">
-              PhD Students
-            </h3>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-              {phdStudents.map(renderMemberCard)}
-            </div>
-          </div>
-        )}
-
-        {/* Undergraduate Students Section */}
-        {undergraduates.length > 0 && (
-          <div>
-            <h3 className="text-2xl font-bold mb-8 text-foreground/90 border-l-4 border-primary pl-4">
-              Undergraduate Researchers
-            </h3>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-              {undergraduates.map(renderMemberCard)}
-            </div>
-          </div>
-        )}
+        </div>
       </div>
     </section>
   );

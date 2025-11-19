@@ -14,8 +14,8 @@ export default function Home() {
     <>
       <Header />
       <Hero />
-      <ResearchAreas />
-      <ResearchInAction />
+      {/* <ResearchAreas /> */}
+      {/* <ResearchInAction /> */}
       <Values />
       <Contact />
     </>
