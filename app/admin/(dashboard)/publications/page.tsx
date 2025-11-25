@@ -1,5 +1,6 @@
 import { getPublications } from '@/actions/publications';
 import { getUsers } from '@/actions/users';
+import { PageTitle } from '@/components/page-title';
 import { PublicationsList } from './publications-list';
 
 export default async function PublicationsPage() {
@@ -8,9 +9,7 @@ export default async function PublicationsPage() {
 
   return (
     <div>
-      <div className="flex justify-between items-center mb-8">
-        <h1 className="text-3xl font-bold text-gray-900">Publications</h1>
-      </div>
+      <PageTitle title="Publications" />
       <PublicationsList initialPublications={publications} users={users} />
     </div>
   );

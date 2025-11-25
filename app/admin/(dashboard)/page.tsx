@@ -1,5 +1,6 @@
 import { getUsers } from '@/actions/users';
 import { getPublications } from '@/actions/publications';
+import { PageTitle } from '@/components/page-title';
 import { Users, FileText } from 'lucide-react';
 
 export default async function AdminDashboard() {
@@ -8,7 +9,7 @@ export default async function AdminDashboard() {
 
   return (
     <div>
-      <h1 className="text-3xl font-bold text-gray-900 mb-8">Dashboard</h1>
+      <PageTitle title="Dashboard" />
       
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {/* Users Card */}

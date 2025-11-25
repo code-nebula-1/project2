@@ -9,9 +9,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Sam Reig Research Lab",
-  description: "Welcome to the Sam Reig Research Lab",
-  generator: "Sam Reig Research Lab",
+  title: "PIERS Lab",
+  description: "Welcome to PIERS Lab - Pioneering Innovation and Excellence in Research",
+  generator: "PIERS Lab",
 };
 
 export default function RootLayout({
@@ -25,7 +25,7 @@ export default function RootLayout({
         className={`${geistMono.variable} antialiased`}
         suppressHydrationWarning
       >
-       {children}
+        {children}
       </body>
     </html>
   );
