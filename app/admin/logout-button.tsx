@@ -9,9 +9,9 @@ export function LogoutButton() {
     <form action={logout}>
       <Button
         type="submit"
-        variant="outline"
         size="admin"
-        className="w-full"
+
+        className="w-full bg-dark-blue text-white"
       >
         <LogOut className="w-4 h-4 mr-2" />
         Logout

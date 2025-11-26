@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { Users, FileText, LayoutDashboard } from 'lucide-react';
+import { Users, FileText, LayoutDashboard, UserCircle } from 'lucide-react';
 import { verifySession } from '@/lib/session';
 import { redirect } from 'next/navigation';
 import { LogoutButton } from '../logout-button';
@@ -11,7 +11,7 @@ export default async function DashboardLayout({
 }) {
   // Verify session
   const session = await verifySession();
-  
+
   // If no session, redirect to login
   if (!session) {
     redirect('/admin/login');
@@ -47,8 +47,15 @@ export default async function DashboardLayout({
               <FileText className="w-5 h-5 mr-3" />
               Publications
             </Link>
+            <Link
+              href="/admin/teams"
+              className="flex items-center px-6 py-3 text-gray-300 hover:bg-gray-800 hover:text-white transition-colors"
+            >
+              <UserCircle className="w-5 h-5 mr-3" />
+              Teams
+            </Link>
           </nav>
-          
+
           {/* User Info and Logout */}
           <div className="p-6 border-t border-gray-800">
             <div className="mb-3">
