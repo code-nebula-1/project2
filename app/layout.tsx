@@ -1,9 +1,7 @@
 import type { Metadata } from "next";
 import { Geist_Mono } from "next/font/google";
-import localFont from "next/font/local";
 import "./globals.css";
-import { Header } from "@/components/header";
-import { LayoutClient } from "@/components/layout-client";
+
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
@@ -11,9 +9,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Sam Reig Research Lab",
-  description: "Welcome to the Sam Reig Research Lab",
-  generator: "Sam Reig Research Lab",
+  title: "PIERS Lab",
+  description: "Welcome to PIERS Lab - Pioneering Innovation and Excellence in Research",
+  generator: "PIERS Lab",
 };
 
 export default function RootLayout({
@@ -27,10 +25,7 @@ export default function RootLayout({
         className={`${geistMono.variable} antialiased`}
         suppressHydrationWarning
       >
-        <LayoutClient>
-         
-          {children}
-        </LayoutClient>
+        {children}
       </body>
     </html>
   );

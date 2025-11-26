@@ -1,16 +1,19 @@
 import { getUsers } from '@/actions/users';
 import { getPublications } from '@/actions/publications';
-import { Users, FileText } from 'lucide-react';
+import { getTeamMembers } from '@/actions/teams';
+import { PageTitle } from '@/components/page-title';
+import { Users, FileText, UserCircle } from 'lucide-react';
 
 export default async function AdminDashboard() {
   const users = await getUsers();
   const publications = await getPublications();
+  const teams = await getTeamMembers();
 
   return (
     <div>
-      <h1 className="text-3xl font-bold text-gray-900 mb-8">Dashboard</h1>
-      
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <PageTitle title="Dashboard" />
+
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {/* Users Card */}
         <div className="bg-white rounded-lg shadow p-6">
           <div className="flex items-center justify-between mb-4">
@@ -33,6 +36,18 @@ export default async function AdminDashboard() {
           </div>
           <p className="text-3xl font-bold text-gray-900">{publications.length}</p>
           <p className="text-gray-600 mt-2">Total publications</p>
+        </div>
+
+        {/* Team Members Card */}
+        <div className="bg-white rounded-lg shadow p-6">
+          <div className="flex items-center justify-between mb-4">
+            <h2 className="text-xl font-semibold text-gray-900">Team Members</h2>
+            <div className="bg-purple-100 p-3 rounded-full">
+              <UserCircle className="w-6 h-6 text-purple-600" />
+            </div>
+          </div>
+          <p className="text-3xl font-bold text-gray-900">{teams.length}</p>
+          <p className="text-gray-600 mt-2">Total team members</p>
         </div>
       </div>
 
@@ -69,9 +84,8 @@ export default async function AdminDashboard() {
                     {user.name || '-'}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm">
-                    <span className={`px-2 py-1 rounded-full text-xs font-medium ${
-                      user.role === 'admin' ? 'bg-purple-100 text-purple-800' : 'bg-gray-100 text-gray-800'
-                    }`}>
+                    <span className={`px-2 py-1 rounded-full text-xs font-medium ${user.role === 'admin' ? 'bg-purple-100 text-purple-800' : 'bg-gray-100 text-gray-800'
+                      }`}>
                       {user.role}
                     </span>
                   </td>

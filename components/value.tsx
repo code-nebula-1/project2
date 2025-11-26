@@ -43,7 +43,7 @@ export function Values() {
   ];
 
   return (
-    <div className="min-h-screen">
+    <div className="">
       {/* Core Values */}
       <section className="relative py-24 px-4">
         <div className="container mx-auto max-w-7xl">

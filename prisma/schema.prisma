@@ -50,3 +50,16 @@ model Publication {
   @@index([createdById])
 }
 
+model Team {
+  id          String   @id @default(cuid())
+  name        String
+  role        String?
+  contact     String?
+  description String?  @db.Text
+  image       String?
+  website     String?
+  createdAt   DateTime @default(now()) @map("created_at")
+  
+  @@map("teams")
+}
+

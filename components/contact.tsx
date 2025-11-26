@@ -5,7 +5,7 @@ export function Contact() {
     <section className="relative py-24 px-4">
       <div className="container mx-auto max-w-4xl">
         <div className="text-center mb-12">
-          <h2 className="text-4xl md:text-5xl font-bold mb-4 text-balance">Join Our Research</h2>
+          <h2 className="text-4xl md:text-5xl font-bold mb-4 text-balance">Join Our Team</h2>
           <p className="text-lg text-foreground/70 text-pretty">
             We're always looking for talented researchers and collaborators
           </p>
@@ -15,12 +15,12 @@ export function Contact() {
           <div className="text-center p-6">
             <Mail className="w-8 h-8 mx-auto mb-3 text-primary" />
             <h3 className="font-bold mb-2">Email</h3>
-            <p className="text-sm text-foreground/70">research@lab.edu</p>
+            <p className="text-sm text-foreground/70">uml.piers.lab@gmail.com</p>
           </div>
           <div className="text-center p-6">
             <MapPin className="w-8 h-8 mx-auto mb-3 text-primary" />
             <h3 className="font-bold mb-2">Location</h3>
-            <p className="text-sm text-foreground/70">Innovation Center, Building 42</p>
+            <p className="text-sm text-foreground/70">Southwick 304</p>
           </div>
           <div className="text-center p-6">
             <Microscope className="w-8 h-8 mx-auto mb-3 text-primary" />

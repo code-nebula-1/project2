@@ -3,6 +3,7 @@
 import { CTAButton } from "@/components/ui/cta-button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { PageTitle } from "@/components/page-title";
 import {
   Calendar,
   User,
@@ -121,17 +122,15 @@ export default function News() {
 
   return (
     <div className="min-h-screen">
-      {/* Hero Section */}
-      <section className="h-[20svh]">
-      </section>
+
       {/* blog post */}
       <section className="relative py-24 px-4">
         <div className="container mx-auto max-w-7xl">
-          <div className="mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4 text-balance">
-              Blog Post
-            </h2>
-          </div>
+          <PageTitle
+            title="Blog Post"
+            size="large"
+            className="mb-16"
+          />
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             {featuredNews.map((item) => {
@@ -186,14 +185,12 @@ export default function News() {
       {/* All News */}
       <section className="relative py-24 px-4 bg-muted/30">
         <div className="container mx-auto max-w-7xl">
-          <div className="mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4 text-balance">
-              All News
-            </h2>
-            <p className="text-lg text-foreground/70 max-w-2xl text-pretty">
-              Complete archive of our research updates and announcements
-            </p>
-          </div>
+          <PageTitle
+            title="All News"
+            subtitle="Complete archive of our research updates and announcements"
+            size="large"
+            className="mb-16"
+          />
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {regularNews.map((item) => {

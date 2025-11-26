@@ -3,6 +3,7 @@
 import { CTAButton } from "@/components/ui/cta-button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { PageTitle } from "@/components/page-title";
 import { Mail, Phone, MapPin, User, MessageSquare } from "lucide-react";
 
 export default function Contact() {
@@ -33,18 +34,14 @@ export default function Contact() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             {/* Contact Form */}
             <div>
-              <div className="mb-8">
-                <h2 className="text-4xl md:text-5xl font-bold mb-4 text-balance">
-                  Send us a Message
-                </h2>
-                <p className="text-lg text-foreground/70 text-pretty">
-                  Fill out the form below and we'll get back to you as soon as
-                  possible.
-                </p>
-              </div>
+              <PageTitle
+                title="Send us a Message"
+                subtitle="Fill out the form below and we'll get back to you as soon as possible."
+                size="large"
+              />
 
               <div className="p-8 rounded-lg border border-border bg-card">
-                <form className="space-y-6">
+                {/*<form className="space-y-6">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
                       <label
@@ -110,20 +107,23 @@ export default function Contact() {
                   <CTAButton type="submit" className="w-full" variant="primary" textStyle="bracket">
                     Send Message
                   </CTAButton>
-                </form>
+                </form>*/}
+                <iframe 
+                  src="https://docs.google.com/forms/d/e/1FAIpQLSfDszT5avdzeiYpIUGmxOGqH0_Rt4pIErqUdT4q8e1BmcQLCA/viewform?embedded=true" 
+                  width="550" 
+                  height="821">
+                    Loading…
+                </iframe>
               </div>
             </div>
 
             {/* Contact Information */}
             <div className="space-y-8">
-              <div className="mb-8">
-                <h2 className="text-4xl md:text-5xl font-bold mb-4 text-balance">
-                  Contact Information
-                </h2>
-                <p className="text-lg text-foreground/70 text-pretty">
-                  Multiple ways to reach our research lab
-                </p>
-              </div>
+              <PageTitle
+                title="Contact Information"
+                subtitle="Multiple ways to reach our research lab"
+                size="large"
+              />
 
               <div className="space-y-6">
                 {contactInfo.map((info, index) => {
