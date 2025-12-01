@@ -1,33 +1,22 @@
-"use client";
-
-import { Card, CardContent } from "@/components/ui/card";
-import { Mail } from "lucide-react";
-import Image from "next/image";
 import { Team } from "@/components/team";
 import { PageTitle } from "@/components/page-title";
+import { getTeamMembers } from "@/actions/teams";
 
-export default function Teams() {
-  const teamMember = {
-    name: "Dr. Samantha Reig",
-    role: "Assistant Professor, Miner School of Computer & Information Sciences",
-    contact: "Sam_Reig@uml.edu",
-    blurb: "Samantha Reig is a human-computer interaction (HCI) and human-robot interaction (HRI) researcher. Her research areas include human-autonomy trust, socially complex human-robot interaction, and personalized experiences with AI agents in services. Her areas of expertise include multi-embodiment interactions, social robotics, and experimental design. She received her Ph.D. in HCI from the Human-Computer Interaction Institute at Carnegie Mellon University in 2023 and her undergraduate degree from Cornell University. If she had to describe her interests in emoji, here’s what she’d say: 🤖💻😺🍜🗺️🌄🌲🥾🎶🎭📚",
-    image: "/Photos/Headshots/sam-headshot.png"
-  };
+export default async function Teams() {
+  const members = await getTeamMembers();
 
   return (
     <div className="min-h-screen">
-
       {/* Main Profile Section */}
       <section className="relative py-24 px-4">
         <div className="container mx-auto max-w-7xl">
           <PageTitle
-            title=" Meet the Team"
+            title="Meet the Team"
             subtitle="Our diverse team of researchers, faculty, and students working at the intersection of human-computer interaction and robotics."
             size="large"
           />
           {/* Profile Image and Basic Info */}
-          <Team />
+          <Team members={members} />
         </div>
       </section>
     </div>
