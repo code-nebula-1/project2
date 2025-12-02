@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { Users, FileText, LayoutDashboard, UserCircle } from 'lucide-react';
+import { Users, FileText, LayoutDashboard, UserCircle, Settings } from 'lucide-react';
 import { verifySession } from '@/lib/session';
 import { redirect } from 'next/navigation';
 import { LogoutButton } from '../logout-button';
@@ -53,6 +53,13 @@ export default async function DashboardLayout({
             >
               <UserCircle className="w-5 h-5 mr-3" />
               Teams
+            </Link>
+            <Link
+              href="/admin/settings"
+              className="flex items-center px-6 py-3 text-gray-300 hover:bg-gray-800 hover:text-white transition-colors"
+            >
+              <Settings className="w-5 h-5 mr-3" />
+              Settings
             </Link>
           </nav>
 
