@@ -1,19 +1,22 @@
 import { getUsers } from '@/actions/users';
 import { getPublications } from '@/actions/publications';
 import { getTeamMembers } from '@/actions/teams';
+import { getSettings } from '@/actions/settings';
 import { PageTitle } from '@/components/page-title';
-import { Users, FileText, UserCircle } from 'lucide-react';
+import { Users, FileText, UserCircle, Settings } from 'lucide-react';
+import Link from 'next/link';
 
 export default async function AdminDashboard() {
   const users = await getUsers();
   const publications = await getPublications();
   const teams = await getTeamMembers();
+  const settings = await getSettings();
 
   return (
     <div>
       <PageTitle title="Dashboard" />
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         {/* Users Card */}
         <div className="bg-white rounded-lg shadow p-6">
           <div className="flex items-center justify-between mb-4">
@@ -49,6 +52,28 @@ export default async function AdminDashboard() {
           <p className="text-3xl font-bold text-gray-900">{teams.length}</p>
           <p className="text-gray-600 mt-2">Total team members</p>
         </div>
+
+        {/* Settings Card */}
+        <Link href="/admin/settings">
+          <div className="bg-white rounded-lg shadow p-6 hover:shadow-lg transition-shadow cursor-pointer">
+            <div className="flex items-center justify-between mb-4">
+              <h2 className="text-xl font-semibold text-gray-900">Settings</h2>
+              <div className="bg-orange-100 p-3 rounded-full">
+                <Settings className="w-6 h-6 text-orange-600" />
+              </div>
+            </div>
+            <div className="space-y-1">
+              <p className="text-sm font-medium text-gray-900">Apply Now Button</p>
+              <p className={`text-xs px-2 py-1 rounded-full inline-block ${settings.showJoinTeam
+                  ? 'bg-green-100 text-green-800'
+                  : 'bg-gray-100 text-gray-800'
+                }`}>
+                {settings.showJoinTeam ? 'Active' : 'Hidden'}
+              </p>
+            </div>
+            <p className="text-gray-600 mt-2 text-sm">Click to manage settings</p>
+          </div>
+        </Link>
       </div>
 
       {/* Recent Users */}

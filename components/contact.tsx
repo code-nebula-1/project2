@@ -1,13 +1,21 @@
 import { Mail, MapPin, Microscope } from "lucide-react"
 
-export function Contact() {
+interface ContactProps {
+  title?: string | null;
+  content?: string | null;
+  showApplyButton?: boolean;
+}
+
+export function Contact({ title, content, showApplyButton = true }: ContactProps = {}) {
   return (
     <section className="relative py-24 px-4">
       <div className="container mx-auto max-w-4xl">
         <div className="text-center mb-12">
-          <h2 className="text-4xl md:text-5xl font-bold mb-4 text-balance">Join Our Team</h2>
+          <h2 className="text-4xl md:text-5xl font-bold mb-4 text-balance">
+            {title || "Join Our Team"}
+          </h2>
           <p className="text-lg text-foreground/70 text-pretty">
-            We're always looking for talented researchers and collaborators
+            {content || "We're always looking for talented researchers and collaborators"}
           </p>
         </div>
 
@@ -29,14 +37,16 @@ export function Contact() {
           </div>
         </div>
 
-        <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <button className="px-8 py-4 rounded-lg bg-primary text-primary-foreground font-semibold hover:opacity-90 transition-opacity">
-            Apply Now
-          </button>
-          <button className="px-8 py-4 rounded-lg border border-border hover:border-primary hover:bg-primary/10 transition-all duration-300">
-            Learn More
-          </button>
-        </div>
+        {showApplyButton && (
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <button className="px-8 py-4 rounded-lg bg-primary text-primary-foreground font-semibold hover:opacity-90 transition-opacity">
+              Apply Now
+            </button>
+            <button className="px-8 py-4 rounded-lg border border-border hover:border-primary hover:bg-primary/10 transition-all duration-300">
+              Learn More
+            </button>
+          </div>
+        )}
       </div>
     </section>
   )

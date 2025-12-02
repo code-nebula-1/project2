@@ -1,5 +1,3 @@
-"use client";
-
 import { Hero } from "@/components/hero";
 import { ResearchAreas } from "@/components/research-areas";
 import { FeaturedProjects } from "@/components/featured-projects";
@@ -8,16 +6,22 @@ import { Contact } from "@/components/contact";
 import { Values } from "@/components/value"
 import { Header } from "@/components/header";
 import { ResearchInAction } from "@/components/research-in-action";
+import { getSettings } from "@/actions/settings";
 
-export default function Home() {
+export default async function Home() {
+  const settings = await getSettings();
+
   return (
     <>
       <Header />
       <Hero />
-      {/* <ResearchAreas /> */}
-      {/* <ResearchInAction /> */}
+
       <Values />
-      <Contact />
+      <Contact
+        title={settings.joinTeamTitle}
+        content={settings.joinTeamContent}
+        showApplyButton={settings.showJoinTeam}
+      />
     </>
   );
 }
