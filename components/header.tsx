@@ -42,18 +42,16 @@ export const Header = () => {
       <header className="relative flex items-center mx-auto justify-between container">
         <Link
           href="/"
-          className={`transition-all duration-300 ${
-            showLogo ? "opacity-100" : "opacity-0 pointer-events-none"
-          }`}
+          className={`transition-all duration-300 ${showLogo ? "opacity-100" : "opacity-0 pointer-events-none"
+            }`}
         >
           <Logo
-            className={`transition-all duration-300 ${
-              isScrolled ? "w-[70px] md:w-[90px]" : "w-[70px] md:w-[90px]"
-            }`}
+            className={`transition-all duration-300 ${isScrolled ? "w-[70px] md:w-[90px]" : "w-[70px] md:w-[90px]"
+              }`}
           />
         </Link>
         <nav className={"flex max-lg:hidden absolute left-1/2 -translate-x-1/2 items-center gap-x-10 p-2 "}>
-          {["Home", "Contact", "Teams", "News", "Publication"].map((item) => (
+          {["Home", "Contact", "Teams", "News", "Publications"].map((item) => (
             <Link
               className={"uppercase inline-block font-mono duration-150 transition-colors ease-out text-foreground/60 hover:text-foreground/100"}
               href={item === "Home" ? "/" : `/${item.toLowerCase()}`}
