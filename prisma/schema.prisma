@@ -64,11 +64,12 @@ model Team {
 }
 
 model Settings {
-  id              String   @id @default(cuid())
-  showJoinTeam    Boolean  @default(true) @map("show_join_team")
-  joinTeamTitle   String?  @default("Join Our Team") @map("join_team_title")
-  joinTeamContent String?  @db.Text @map("join_team_content")
-  updatedAt       DateTime @updatedAt @map("updated_at")
+  id        String   @id @default(cuid())
+  name      String   @unique
+  data      Json
+  status    Boolean  @default(true)
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
   
   @@map("settings")
 }

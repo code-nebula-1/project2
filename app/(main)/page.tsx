@@ -18,19 +18,19 @@ export default async function Home() {
     <>
       <Header />
       <Hero
-        showMap={locationSettings.status}
+        showMap={locationSettings?.status}
         mapData={{
-          name: locationSettings.data.name,
-          lat: locationSettings.data.lat,
-          lng: locationSettings.data.lng,
+          name: locationSettings?.data?.name,
+          lat: locationSettings?.data?.lat,
+          lng: locationSettings?.data?.lng,
         }}
       />
 
       <Values />
       <Contact
-        title={joinTeamSettings.data.title}
-        content={joinTeamSettings.data.content}
-        showApplyButton={joinTeamSettings.status}
+        title={joinTeamSettings?.data?.title}
+        content={joinTeamSettings?.data?.content}
+        showApplyButton={joinTeamSettings?.status}
       />
     </>
   );

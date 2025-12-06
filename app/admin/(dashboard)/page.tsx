@@ -1,7 +1,7 @@
 import { getUsers } from '@/actions/users';
 import { getPublications } from '@/actions/publications';
 import { getTeamMembers } from '@/actions/teams';
-import { getSettings } from '@/actions/settings';
+import { getJoinTeamSettings } from '@/actions/settings';
 import { PageTitle } from '@/components/page-title';
 import { Users, FileText, UserCircle, Settings } from 'lucide-react';
 import Link from 'next/link';
@@ -10,7 +10,7 @@ export default async function AdminDashboard() {
   const users = await getUsers();
   const publications = await getPublications();
   const teams = await getTeamMembers();
-  const settings = await getSettings();
+  const settings = await getJoinTeamSettings();
 
   return (
     <div>
@@ -63,12 +63,12 @@ export default async function AdminDashboard() {
               </div>
             </div>
             <div className="space-y-1">
-              <p className="text-sm font-medium text-gray-900">Apply Now Button</p>
-              <p className={`text-xs px-2 py-1 rounded-full inline-block ${settings.showJoinTeam
+              <p className="text-sm font-medium text-gray-900">Join Team Section</p>
+              <p className={`text-xs px-2 py-1 rounded-full inline-block ${settings.status
                   ? 'bg-green-100 text-green-800'
                   : 'bg-gray-100 text-gray-800'
                 }`}>
-                {settings.showJoinTeam ? 'Active' : 'Hidden'}
+                {settings.status ? 'Active' : 'Hidden'}
               </p>
             </div>
             <p className="text-gray-600 mt-2 text-sm">Click to manage settings</p>

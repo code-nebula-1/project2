@@ -3,8 +3,18 @@
 import { useEffect, useState } from "react";
 import { CTAButton } from "./ui/cta-button";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import { FloatingLocationMap } from "./floating-location-map";
 
-export function Hero() {
+interface HeroProps {
+  showMap?: boolean;
+  mapData?: {
+    name: string;
+    lat: number;
+    lng: number;
+  };
+}
+
+export function Hero({ showMap = true, mapData }: HeroProps) {
   const [current, setCurrent] = useState(0);
   const [isAutoPlay, setIsAutoPlay] = useState(true);
 
@@ -71,6 +81,17 @@ export function Hero() {
 
         </div>
       </div>
+
+      {/* Floating Location Map Widget - Right Side */}
+      {showMap && (
+        <div className="absolute right-8 top-1/2 -translate-y-1/2 z-30 hidden lg:block">
+          <FloatingLocationMap 
+            personName={mapData?.name || "Research Lab"} 
+            latitude={mapData?.lat}
+            longitude={mapData?.lng}
+          />
+        </div>
+      )}
 
       {/* Navigation Arrows */}
       <button
