@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { updateSettings, type Settings } from '@/actions/settings';
+import { updateJoinTeamSettings, type SettingResult, type JoinTeamData } from '@/actions/settings';
 import { Button } from '@/components/ui/button';
 import { Label } from '@/components/ui/label';
 import { Switch } from '@/components/ui/switch';
@@ -11,7 +11,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { useToast } from '@/hooks/use-toast';
 
 interface SettingsFormProps {
-  settings: Settings;
+  settings: SettingResult<JoinTeamData>;
 }
 
 export function SettingsForm({ settings }: SettingsFormProps) {
@@ -19,9 +19,9 @@ export function SettingsForm({ settings }: SettingsFormProps) {
   const { toast } = useToast();
   const [isLoading, setIsLoading] = useState(false);
   const [formData, setFormData] = useState({
-    showJoinTeam: settings.showJoinTeam,
-    joinTeamTitle: settings.joinTeamTitle || '',
-    joinTeamContent: settings.joinTeamContent || '',
+    status: settings.status,
+    title: settings.data.title || '',
+    content: settings.data.content || '',
   });
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -29,11 +29,13 @@ export function SettingsForm({ settings }: SettingsFormProps) {
     setIsLoading(true);
 
     try {
-      await updateSettings({
-        showJoinTeam: formData.showJoinTeam,
-        joinTeamTitle: formData.joinTeamTitle,
-        joinTeamContent: formData.joinTeamContent,
-      });
+      await updateJoinTeamSettings(
+        {
+          title: formData.title,
+          content: formData.content,
+        },
+        formData.status
+      );
 
       toast({
         title: 'Success',
@@ -59,24 +61,24 @@ export function SettingsForm({ settings }: SettingsFormProps) {
         <div>
           <h3 className="text-lg font-medium text-gray-900 mb-4">Join Team Section</h3>
           <p className="text-sm text-gray-600 mb-4">
-            Control the visibility of the &quot;Apply Now&quot; button and customize the content of the &quot;Join Our Team&quot; section on the home page.
+            Control the visibility and content of the &quot;Join Our Team&quot; section on the Teams page.
           </p>
         </div>
 
         <div className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
           <div className="flex-1">
             <Label htmlFor="show-join-team" className="text-base font-medium">
-              Show Apply Now Button
+              Show Join Team Section
             </Label>
             <p className="text-sm text-gray-600 mt-1">
-              Display the &quot;Apply Now&quot; and &quot;Learn More&quot; buttons in the contact section
+              Display the join team section on the public teams page
             </p>
           </div>
           <Switch
             id="show-join-team"
-            checked={formData.showJoinTeam}
+            checked={formData.status}
             onCheckedChange={(checked) =>
-              setFormData({ ...formData, showJoinTeam: checked })
+              setFormData({ ...formData, status: checked })
             }
           />
         </div>
@@ -86,12 +88,12 @@ export function SettingsForm({ settings }: SettingsFormProps) {
           <Label htmlFor="join-team-title">Section Title</Label>
           <Input
             id="join-team-title"
-            value={formData.joinTeamTitle}
+            value={formData.title}
             onChange={(e) =>
-              setFormData({ ...formData, joinTeamTitle: e.target.value })
+              setFormData({ ...formData, title: e.target.value })
             }
             placeholder="e.g., Join Our Team"
-            disabled={!formData.showJoinTeam}
+            disabled={!formData.status}
           />
         </div>
 
@@ -100,16 +102,16 @@ export function SettingsForm({ settings }: SettingsFormProps) {
           <Label htmlFor="join-team-content">Section Content</Label>
           <Textarea
             id="join-team-content"
-            value={formData.joinTeamContent}
+            value={formData.content}
             onChange={(e) =>
-              setFormData({ ...formData, joinTeamContent: e.target.value })
+              setFormData({ ...formData, content: e.target.value })
             }
             placeholder="Enter the content for the join team section..."
             rows={6}
-            disabled={!formData.showJoinTeam}
+            disabled={!formData.status}
           />
           <p className="text-sm text-gray-500">
-            This text will be displayed in the join team section on the home page.
+            This text will be displayed in the join team section on the Teams page.
           </p>
         </div>
       </div>
@@ -123,4 +125,3 @@ export function SettingsForm({ settings }: SettingsFormProps) {
     </form>
   );
 }
-

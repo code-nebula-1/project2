@@ -516,7 +516,7 @@ export function PublicationsList({ initialPublications, users }: PublicationsLis
           <AlertDialogHeader>
             <AlertDialogTitle>Are you sure?</AlertDialogTitle>
             <AlertDialogDescription>
-              This will permanently delete the publication "{selectedPublication?.title}". This
+              This will permanently delete the publication &quot;{selectedPublication?.title}&quot;. This
               action cannot be undone.
             </AlertDialogDescription>
           </AlertDialogHeader>

@@ -32,6 +32,7 @@ const buttonVariants = cva(
         "admin-sm": "h-8 px-3 text-xs",
         "admin-lg": "h-10 px-8 text-sm",
         "admin-icon": "h-9 w-9",
+        icon: "size-9",
       },
     },
     defaultVariants: {

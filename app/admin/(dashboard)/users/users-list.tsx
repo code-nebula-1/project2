@@ -366,7 +366,7 @@ export function UsersList({ initialUsers }: UsersListProps) {
           <AlertDialogHeader>
             <AlertDialogTitle>Are you sure?</AlertDialogTitle>
             <AlertDialogDescription>
-              This will permanently delete the user "{selectedUser?.email}". This action cannot be
+              This will permanently delete the user &quot;{selectedUser?.email}&quot;. This action cannot be
               undone.
             </AlertDialogDescription>
           </AlertDialogHeader>

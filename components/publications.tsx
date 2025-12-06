@@ -1,3 +1,5 @@
+"use client";
+
 import { CTAButton } from "@/components/ui/cta-button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -9,41 +11,52 @@ import {
   Quote,
   Download,
   Eye,
+  Copy,
+  Check,
 } from "lucide-react";
 import { Publication } from "@/actions/publications";
+import { useState } from "react";
 
 export function Publications({ publications }: { publications: Publication[] }) {
-  /*  const publications = [
-     {
-       title:
-         "Deep Learning for Autonomous Robot Navigation in Dynamic Environments",
-       authors: "Chen, S., Rodriguez, M., & Park, J.",
-       journal: "Journal of Robotics Research",
-       year: "2024",
-       doi: "10.1007/s12345-024-00123-4",
-     },
-     {
-       title: "Human-Robot Collaboration in Manufacturing: A Survey",
-       authors: "Watson, E., Johnson, S., & Thompson, L.",
-       journal: "IEEE Transactions on Robotics",
-       year: "2024",
-       doi: "10.1109/TRO.2024.0012345",
-     },
-     {
-       title: "Swarm Intelligence for Multi-Robot Coordination",
-       authors: "Kumar, A., Santos, M., & Wilson, T.",
-       journal: "Autonomous Robots",
-       year: "2023",
-       doi: "10.1007/s10514-023-00123-4",
-     },
-     {
-       title: "Machine Learning Approaches for Robotic Manipulation",
-       authors: "Park, J., Chen, D., & Kim, R.",
-       journal: "International Journal of Robotics Research",
-       year: "2023",
-       doi: "10.1177/02783649231234567",
-     },
-   ]; */
+  const [copiedId, setCopiedId] = useState<string | null>(null);
+
+  // Get DOI URL from DOI string
+  const getDoiUrl = (doi: string | null) => {
+    if (!doi) return null;
+    // If it's already a full URL, return it
+    if (doi.startsWith("http")) return doi;
+    // Otherwise, construct the DOI resolver URL
+    return `https://doi.org/${doi}`;
+  };
+
+  // Get the best available paper URL
+  const getPaperUrl = (pub: Publication) => {
+    if (pub.url) return pub.url;
+    if (pub.pdfUrl) return pub.pdfUrl;
+    if (pub.doi) return getDoiUrl(pub.doi);
+    return null;
+  };
+
+  // Generate citation text
+  const generateCitation = (pub: Publication) => {
+    const authorsStr = Array.isArray(pub.authors) ? pub.authors.join(", ") : pub.authors;
+    const yearStr = pub.year ? ` (${pub.year})` : "";
+    const journalStr = pub.journal ? `. ${pub.journal}` : "";
+    const doiStr = pub.doi ? `. https://doi.org/${pub.doi}` : "";
+    return `${authorsStr}${yearStr}. ${pub.title}${journalStr}${doiStr}`;
+  };
+
+  // Copy citation to clipboard
+  const handleCopyCitation = async (pub: Publication) => {
+    const citation = generateCitation(pub);
+    try {
+      await navigator.clipboard.writeText(citation);
+      setCopiedId(pub.id);
+      setTimeout(() => setCopiedId(null), 2000);
+    } catch (err) {
+      console.error("Failed to copy citation:", err);
+    }
+  };
 
   const getCategoryColor = (category: string) => {
     const colors = {
@@ -77,25 +90,74 @@ export function Publications({ publications }: { publications: Publication[] }) 
                       <h3 className="text-lg font-semibold group-hover:text-primary transition-colors">
                         {pub.title}
                       </h3>
+                      {pub.abstract && (
+                        <p className="text-foreground/60 text-sm leading-relaxed">
+                          {pub.abstract}
+                        </p>
+                      )}
                       <div className="space-y-2">
                         <p className="text-foreground/70">
                           <span className="font-medium">Authors:</span>{" "}
-                          {pub.authors}
+                          {Array.isArray(pub.authors) ? pub.authors.join(", ") : pub.authors}
                         </p>
-                        <p className="text-foreground/70">
-                          <span className="font-medium">Journal:</span>{" "}
-                          {pub.journal}, {pub.year}
-                        </p>
-                        <p className="text-sm text-primary font-mono">
-                          <span className="font-medium">DOI:</span> {pub.doi}
-                        </p>
+                        {pub.journal && (
+                          <p className="text-foreground/70">
+                            <span className="font-medium">Journal:</span>{" "}
+                            {pub.journal}{pub.year ? `, ${pub.year}` : ""}
+                          </p>
+                        )}
+                        {pub.doi && (
+                          <p className="text-sm font-mono">
+                            <span className="font-medium text-foreground/70">DOI:</span>{" "}
+                            <a
+                              href={getDoiUrl(pub.doi) || "#"}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="text-primary hover:underline"
+                            >
+                              {pub.doi}
+                            </a>
+                          </p>
+                        )}
+                        {pub.citationCount !== null && pub.citationCount > 0 && (
+                          <p className="text-foreground/70 text-sm">
+                            <span className="font-medium">Citations:</span>{" "}
+                            {pub.citationCount}
+                          </p>
+                        )}
                       </div>
                       <div className="flex gap-2 pt-2">
-                        <CTAButton size="sm" className="group/btn" textStyle="default">
-                          View Paper
-                          <ExternalLink className="ml-2 w-3 h-3 transition-transform group-hover/btn:translate-x-0.5" />
+                        {getPaperUrl(pub) && (
+                          <CTAButton
+                            size="sm"
+                            className="group/btn"
+                            textStyle="default"
+                            href={getPaperUrl(pub)!}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            View Paper
+                            <ExternalLink className="ml-2 w-3 h-3 transition-transform group-hover/btn:translate-x-0.5" />
+                          </CTAButton>
+                        )}
+                        <CTAButton
+                          size="sm"
+                          textStyle="default"
+                          variant="secondary"
+                          onClick={() => handleCopyCitation(pub)}
+                        >
+                          {copiedId === pub.id ? (
+                            <>
+                              Copied!
+                              <Check className="ml-2 w-3 h-3" />
+                            </>
+                          ) : (
+                            <>
+                              Cite
+                              <Copy className="ml-2 w-3 h-3" />
+                            </>
+                          )}
                         </CTAButton>
-                        <CTAButton size="sm" textStyle="default">Cite</CTAButton>
                       </div>
                     </div>
                   </CardContent>

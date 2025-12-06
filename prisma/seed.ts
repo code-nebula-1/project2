@@ -6,32 +6,81 @@ const prisma = new PrismaClient();
 async function main() {
   console.log('Starting seed...');
 
-  // Check if admin user already exists
+  // Seed Admin User
   const existingAdmin = await prisma.user.findUnique({
     where: { email: 'admin@admin.com' },
   });
 
   if (existingAdmin) {
     console.log('Admin user already exists');
-    return;
+  } else {
+    const hashedPassword = await bcrypt.hash('admin1234', 10);
+
+    const admin = await prisma.user.create({
+      data: {
+        email: 'admin@admin.com',
+        password: hashedPassword,
+        name: 'Admin User',
+        role: 'admin',
+      },
+    });
+
+    console.log('Created admin user:', admin.email);
+    console.log('Email: admin@admin.com');
+    console.log('Password: admin1234');
   }
 
-  // Hash the password
-  const hashedPassword = await bcrypt.hash('admin1234', 10);
+  // ============================================
+  // Seed Settings
+  // ============================================
 
-  // Create admin user
-  const admin = await prisma.user.create({
-    data: {
-      email: 'admin@admin.com',
-      password: hashedPassword,
-      name: 'Admin User',
-      role: 'admin',
-    },
+  // Join Team Settings
+  const existingJoinTeam = await prisma.settings.findUnique({
+    where: { name: 'join_team' },
   });
 
-  console.log('Created admin user:', admin.email);
-  console.log('Email: admin@admin.com');
-  console.log('Password: admin1234');
+  if (existingJoinTeam) {
+    console.log('Join Team settings already exist');
+  } else {
+    await prisma.settings.create({
+      data: {
+        name: 'join_team',
+        status: true,
+        data: {
+          title: 'Join Our Team',
+          content: 'We are always looking for talented individuals to join our research team. If you are passionate about human-computer interaction and robotics, we would love to hear from you.',
+        },
+      },
+    });
+    console.log('Created Join Team settings');
+  }
+
+  // Map Location Settings
+  const existingMapLocation = await prisma.settings.findUnique({
+    where: { name: 'map_location' },
+  });
+
+  if (existingMapLocation) {
+    console.log('Map Location settings already exist');
+  } else {
+    await prisma.settings.create({
+      data: {
+        name: 'map_location',
+        status: true,
+        data: {
+          name: 'Research Lab',
+          description: 'Visit our research facility where we explore human-computer interaction and robotics.',
+          lat: 42.6334,
+          lng: -71.3162,
+          zoom: 15,
+          address: '1 University Ave, Lowell, MA 01854',
+        },
+      },
+    });
+    console.log('Created Map Location settings');
+  }
+
+  console.log('Seed completed!');
 }
 
 main()

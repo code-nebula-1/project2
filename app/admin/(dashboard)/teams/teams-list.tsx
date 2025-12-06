@@ -447,7 +447,7 @@ export function TeamsList({ initialTeams }: TeamsListProps) {
                     <AlertDialogHeader>
                         <AlertDialogTitle>Are you sure?</AlertDialogTitle>
                         <AlertDialogDescription>
-                            This will permanently delete "{selectedTeam?.name}" from the team. This
+                            This will permanently delete &quot;{selectedTeam?.name}&quot; from the team. This
                             action cannot be undone.
                         </AlertDialogDescription>
                     </AlertDialogHeader>

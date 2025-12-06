@@ -1,9 +1,12 @@
-import { getSettings } from '@/actions/settings';
+import { getJoinTeamSettings, getMapLocationSettings } from '@/actions/settings';
 import { PageTitle } from '@/components/page-title';
-import { SettingsForm } from './settings-form';
+import { SettingsTabs } from './settings-tabs';
 
 export default async function SettingsPage() {
-  const settings = await getSettings();
+  const [joinTeamSettings, locationSettings] = await Promise.all([
+    getJoinTeamSettings(),
+    getMapLocationSettings(),
+  ]);
 
   return (
     <div>
@@ -18,10 +21,12 @@ export default async function SettingsPage() {
             </p>
           </div>
 
-          <SettingsForm settings={settings} />
+          <SettingsTabs 
+            joinTeamSettings={joinTeamSettings} 
+            locationSettings={locationSettings} 
+          />
         </div>
       </div>
     </div>
   );
 }
-
