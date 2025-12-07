@@ -6,7 +6,6 @@ import Link from "next/link";
 import { Logo } from "./logo";
 import { MobileMenu } from "./mobile-menu";
 import { LanguageSelector } from "./language-selector";
-import { usePathname } from "next/navigation";
 import { useTranslation } from "@/lib/i18n";
 
 const navItems = [
@@ -19,7 +18,6 @@ const navItems = [
 
 export const Header = () => {
   const [scrollY, setScrollY] = useState(0);
-  const pathname = usePathname();
   const { t } = useTranslation();
 
   useEffect(() => {
@@ -31,17 +29,11 @@ export const Header = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Check if we're on the home page (which has video background)
-  const isHomePage = pathname === "/";
-
   // Calculate scroll-based effects
   const backdropBlur = scrollY > 50 ? "backdrop-blur-md" : "backdrop-blur-none";
   const showLogo = scrollY < 50; // Hide logo when scrolled more than 50px
   const isScrolled = scrollY > 50; // Check if scrolled for height reduction
   const showBackground = scrollY > 50; // Show background when scrolled
-
-  // Navigation color logic: white on home page (video background), black on other pages
-  const shouldUseWhiteText = isHomePage && !isScrolled;
 
   return (
     <div
@@ -77,10 +69,7 @@ export const Header = () => {
             <LanguageSelector />
           </div>
           <div className="lg:hidden">
-            <MobileMenu
-              isScrolled={isScrolled}
-              shouldUseWhiteText={shouldUseWhiteText}
-            />
+            <MobileMenu />
           </div>
         </div>
       </header>
