@@ -1,5 +1,5 @@
 import { Publications } from "@/components/publications"
-import { PageTitle } from "@/components/page-title";
+import { TranslatedPageTitle } from "@/components/translated-page-title";
 import { getPaginatedPublications } from "@/actions/publications";
 
 type Props = {
@@ -17,9 +17,9 @@ export default async function Publication({ searchParams }: Props) {
       {/* Main Profile Section */}
       <section className="relative py-24 px-4">
         <div className="container mx-auto max-w-7xl">
-          <PageTitle
-            title="Publications"
-            subtitle="Explore our research contributions and published works"
+          <TranslatedPageTitle
+            titleKey="publications.title"
+            subtitleKey="publications.subtitle"
             size="large"
           />
           {/* Profile Image and Basic Info */}

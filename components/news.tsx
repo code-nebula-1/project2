@@ -22,6 +22,7 @@ import {
 } from "lucide-react";
 import { News as NewsType } from "@/actions/news";
 import Link from "next/link";
+import { useTranslation, useI18n } from "@/lib/i18n";
 
 type PaginationInfo = {
   currentPage: number;
@@ -108,9 +109,9 @@ function formatType(type: string) {
 }
 
 // Format date for display
-function formatDate(date: Date | string | null) {
+function formatDate(date: Date | string | null, locale: string = "en") {
   if (!date) return null;
-  return new Date(date).toLocaleDateString("en-US", {
+  return new Date(date).toLocaleDateString(locale === "es" ? "es-ES" : "en-US", {
     year: "numeric",
     month: "short",
     day: "numeric",
@@ -118,8 +119,8 @@ function formatDate(date: Date | string | null) {
 }
 
 export function NewsComponent({ news, pagination }: NewsProps) {
-  const featuredNews = news.filter((item) => item.featured);
-  const regularNews = news.filter((item) => !item.featured);
+  const { t } = useTranslation();
+  const { locale } = useI18n();
 
   // Generate page numbers to display
   const getPageNumbers = () => {
@@ -147,116 +148,20 @@ export function NewsComponent({ news, pagination }: NewsProps) {
 
   return (
     <div className="min-h-screen">
-      {/* Featured News / Blog Posts */}
-      {featuredNews.length > 0 && (
-        <section className="relative py-24 px-4">
-          <div className="container mx-auto max-w-7xl">
-            <PageTitle title="Featured" size="large" className="mb-16" />
 
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-              {featuredNews.map((item) => {
-                const Icon = item.type === "social_embed"
-                  ? getPlatformIcon(item.platform)
-                  : getTypeIcon(item.type);
-                return (
-                  <Card
-                    key={item.id}
-                    className="group overflow-hidden hover:shadow-lg transition-all duration-300 border-border bg-card hover:bg-card/80"
-                  >
-                    <CardContent className="p-8">
-                      <div className="flex items-center justify-between mb-6">
-                        <div className="flex items-center space-x-3">
-                          <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center">
-                            <Icon className="w-5 h-5 text-primary" />
-                          </div>
-                          <Badge
-                            variant="secondary"
-                            className={`text-xs font-medium ${getTypeColor(item.type)}`}
-                          >
-                            {formatType(item.type)}
-                          </Badge>
-                          {item.platform && (
-                            <Badge
-                              variant="secondary"
-                              className={`text-xs font-medium ${getPlatformColor(item.platform)}`}
-                            >
-                              {item.platform}
-                            </Badge>
-                          )}
-                        </div>
-                        {(item.publishedAt || item.createdAt) && (
-                          <span className="text-sm text-foreground/60 font-mono">
-                            {formatDate(item.publishedAt || item.createdAt)}
-                          </span>
-                        )}
-                      </div>
-                      <h3 className="text-2xl font-bold mb-4 group-hover:text-primary transition-colors">
-                        {item.title}
-                      </h3>
-
-                      {/* Show content if it's not a social embed */}
-                      {item.content && item.type !== "social_embed" && (
-                        <p className="text-foreground/70 leading-relaxed text-pretty mb-6">
-                          {item.content}
-                        </p>
-                      )}
-
-                      {/* Show social embed */}
-                      {item.type === "social_embed" && item.url && (
-                        <div className="mb-6">
-                          <SocialEmbed url={item.url} platform={item.platform} />
-                        </div>
-                      )}
-
-                      <div className="flex items-center justify-between">
-                        {item.addedBy && (
-                          <span className="text-sm text-foreground/60 flex items-center gap-1">
-                            <User className="w-3 h-3" />
-                            {item.addedBy}
-                          </span>
-                        )}
-                        {!item.addedBy && <span />}
-                        {item.url && item.type !== "social_embed" && (
-                          <CTAButton
-                            size="sm"
-                            className="group/btn"
-                            textStyle="default"
-                            href={item.url}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                          >
-                            Read More
-                            <ExternalLink className="ml-2 w-3 h-3 transition-transform group-hover/btn:translate-x-0.5" />
-                          </CTAButton>
-                        )}
-                      </div>
-                    </CardContent>
-                  </Card>
-                );
-              })}
-            </div>
-          </div>
-        </section>
-      )}
 
       {/* All News */}
-      <section className="relative py-24 px-4 bg-muted/30">
+      <section className="relative  px-4 bg-muted/30">
         <div className="container mx-auto max-w-7xl">
-          <PageTitle
-            title="All News"
-            subtitle="Latest updates and announcements"
-            size="large"
-            className="mb-16"
-          />
 
           {news.length === 0 ? (
             <div className="text-center py-12 text-foreground/60">
-              No news found.
+              {t("news.noNews")}
             </div>
           ) : (
             <>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {regularNews.map((item) => {
+                {news.map((item) => {
                   const Icon = item.type === "social_embed"
                     ? getPlatformIcon(item.platform)
                     : getTypeIcon(item.type);
@@ -278,7 +183,7 @@ export function NewsComponent({ news, pagination }: NewsProps) {
                           </div>
                           {(item.publishedAt || item.createdAt) && (
                             <span className="text-xs text-foreground/60 font-mono">
-                              {formatDate(item.publishedAt || item.createdAt)}
+                              {formatDate(item.publishedAt || item.createdAt, locale)}
                             </span>
                           )}
                         </div>
@@ -316,7 +221,7 @@ export function NewsComponent({ news, pagination }: NewsProps) {
                               target="_blank"
                               rel="noopener noreferrer"
                             >
-                              Read More
+                              {t("common.readMore")}
                               <ArrowRight className="ml-1 w-3 h-3 transition-transform group-hover/btn:translate-x-0.5" />
                             </CTAButton>
                           )}
@@ -410,10 +315,10 @@ export function NewsComponent({ news, pagination }: NewsProps) {
               {/* Results Info */}
               {pagination && (
                 <div className="text-center text-sm text-foreground/50 pt-2">
-                  Showing{" "}
+                  {t("common.showing")}{" "}
                   {(pagination.currentPage - 1) * 10 + 1}–
-                  {Math.min(pagination.currentPage * 10, pagination.totalCount)} of{" "}
-                  {pagination.totalCount} news items
+                  {Math.min(pagination.currentPage * 10, pagination.totalCount)} {t("common.of")}{" "}
+                  {pagination.totalCount} {t("news.newsItems")}
                 </div>
               )}
             </>

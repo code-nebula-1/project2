@@ -14,38 +14,80 @@
     "search": "Buscar",
     "close": "Cerrar",
     "menu": "Menú",
-    "language": "Idioma"
+    "language": "Idioma",
+    "showing": "Mostrando",
+    "of": "de",
+    "previous": "Anterior",
+    "next": "Siguiente"
   },
   "hero": {
-    "welcome": "Bienvenido a PIERS Lab",
-    "subtitle": "Innovación Pionera y Excelencia en Investigación"
+    "welcome": "Bienvenido a PIERS lab"
   },
   "contact": {
     "title": "Contáctenos",
-    "name": "Nombre",
-    "email": "Correo electrónico",
+    "pageTitle": "Envíenos un Mensaje",
+    "pageSubtitle": "Complete el formulario a continuación y nos pondremos en contacto con usted lo antes posible.",
+    "infoTitle": "Información de Contacto",
+    "infoSubtitle": "Múltiples formas de contactar nuestro laboratorio de investigación",
+    "name": "Nombre Completo",
+    "namePlaceholder": "Su nombre completo",
+    "email": "Correo Electrónico",
+    "emailPlaceholder": "su.correo@ejemplo.com",
+    "subject": "Asunto",
+    "subjectPlaceholder": "¿De qué se trata?",
     "message": "Mensaje",
+    "messagePlaceholder": "Cuéntenos más sobre su consulta...",
     "send": "Enviar Mensaje",
     "success": "¡Mensaje enviado exitosamente!",
-    "error": "Error al enviar el mensaje"
+    "error": "Error al enviar el mensaje",
+    "emailLabel": "Correo",
+    "addressLabel": "Dirección",
+    "generalInquiries": "Consultas generales",
+    "location": "Ubicación",
+    "opportunities": "Oportunidades",
+    "phdPositions": "Posiciones de Doctorado y Postdoctorado"
+  },
+  "joinTeam": {
+    "title": "Únete a Nuestro Equipo",
+    "subtitle": "Siempre buscamos investigadores y colaboradores talentosos",
+    "applyNow": "Aplicar Ahora",
+    "learnMore": "Más Información"
   },
   "teams": {
-    "title": "Nuestro Equipo",
-    "subtitle": "Conoce a los investigadores detrás de nuestro trabajo"
+    "title": "Conoce al Equipo",
+    "subtitle": "Nuestro diverso equipo de investigadores, profesores y estudiantes trabajando en la intersección de interacción humano-computadora y robótica.",
+    "clickToView": "Clic para ver perfil",
+    "teamMember": "Miembro del Equipo",
+    "biography": "Biografía"
   },
   "news": {
-    "title": "Noticias",
-    "subtitle": "Últimas actualizaciones y anuncios",
+    "title": "Noticias y Actualizaciones",
+    "subtitle": "Mantente actualizado con las últimas noticias, anuncios y destacados de redes sociales",
+    "featured": "Destacados",
+    "allNews": "Todas las Noticias",
+    "allNewsSubtitle": "Últimas actualizaciones y anuncios",
+    "noNews": "No se encontraron noticias.",
+    "newsItems": "noticias",
     "postedOn": "Publicado el",
     "by": "por"
   },
   "publications": {
     "title": "Publicaciones",
-    "subtitle": "Nuestras publicaciones e investigaciones"
+    "subtitle": "Explora nuestras contribuciones de investigación y trabajos publicados",
+    "noPublications": "No se encontraron publicaciones.",
+    "authors": "Autores",
+    "journal": "Revista",
+    "doi": "DOI",
+    "citations": "Citas",
+    "viewPaper": "Ver Artículo",
+    "cite": "Citar",
+    "copied": "¡Copiado!",
+    "publicationsCount": "publicaciones"
   },
   "footer": {
-    "rights": "Todos los derechos reservados",
-    "privacy": "Política de Privacidad",
-    "terms": "Términos de Servicio"
+    "rights": "Todos los derechos reservados.",
+    "contact": "Contacto",
+    "publications": "Publicaciones",
+    "team": "Equipo"
   }
 }

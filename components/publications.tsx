@@ -20,6 +20,7 @@ import {
 import { Publication } from "@/actions/publications";
 import { useState } from "react";
 import Link from "next/link";
+import { useTranslation } from "@/lib/i18n";
 
 type PaginationInfo = {
   currentPage: number;
@@ -34,6 +35,7 @@ type PublicationsProps = {
 
 export function Publications({ publications, pagination }: PublicationsProps) {
   const [copiedId, setCopiedId] = useState<string | null>(null);
+  const { t } = useTranslation();
 
   // Get DOI URL from DOI string
   const getDoiUrl = (doi: string | null) => {
@@ -121,7 +123,7 @@ export function Publications({ publications, pagination }: PublicationsProps) {
             <div className="max-w-4xl mx-auto space-y-6">
               {publications.length === 0 ? (
                 <div className="text-center py-12 text-foreground/60">
-                  No publications found.
+                  {t("publications.noPublications")}
                 </div>
               ) : (
                 <>
@@ -142,18 +144,18 @@ export function Publications({ publications, pagination }: PublicationsProps) {
                           )}
                           <div className="space-y-2">
                             <p className="text-foreground/70">
-                              <span className="font-medium">Authors:</span>{" "}
+                              <span className="font-medium">{t("publications.authors")}:</span>{" "}
                               {Array.isArray(pub.authors) ? pub.authors.join(", ") : pub.authors}
                             </p>
                             {pub.journal && (
                               <p className="text-foreground/70">
-                                <span className="font-medium">Journal:</span>{" "}
+                                <span className="font-medium">{t("publications.journal")}:</span>{" "}
                                 {pub.journal}{pub.year ? `, ${pub.year}` : ""}
                               </p>
                             )}
                             {pub.doi && (
                               <p className="text-sm font-mono">
-                                <span className="font-medium text-foreground/70">DOI:</span>{" "}
+                                <span className="font-medium text-foreground/70">{t("publications.doi")}:</span>{" "}
                                 <a
                                   href={getDoiUrl(pub.doi) || "#"}
                                   target="_blank"
@@ -166,7 +168,7 @@ export function Publications({ publications, pagination }: PublicationsProps) {
                             )}
                             {pub.citationCount !== null && pub.citationCount > 0 && (
                               <p className="text-foreground/70 text-sm">
-                                <span className="font-medium">Citations:</span>{" "}
+                                <span className="font-medium">{t("publications.citations")}:</span>{" "}
                                 {pub.citationCount}
                               </p>
                             )}
@@ -181,7 +183,7 @@ export function Publications({ publications, pagination }: PublicationsProps) {
                                 target="_blank"
                                 rel="noopener noreferrer"
                               >
-                                View Paper
+                                {t("publications.viewPaper")}
                                 <ExternalLink className="ml-2 w-3 h-3 transition-transform group-hover/btn:translate-x-0.5" />
                               </CTAButton>
                             )}
@@ -193,12 +195,12 @@ export function Publications({ publications, pagination }: PublicationsProps) {
                             >
                               {copiedId === pub.id ? (
                                 <>
-                                  Copied!
+                                  {t("publications.copied")}
                                   <Check className="ml-2 w-3 h-3" />
                                 </>
                               ) : (
                                 <>
-                                  Cite
+                                  {t("publications.cite")}
                                   <Copy className="ml-2 w-3 h-3" />
                                 </>
                               )}
@@ -282,7 +284,7 @@ export function Publications({ publications, pagination }: PublicationsProps) {
               {/* Results Info */}
               {pagination && (
                 <div className="text-center text-sm text-foreground/50 pt-2">
-                  Showing {((pagination.currentPage - 1) * 10) + 1}–{Math.min(pagination.currentPage * 10, pagination.totalCount)} of {pagination.totalCount} publications
+                  {t("common.showing")} {((pagination.currentPage - 1) * 10) + 1}–{Math.min(pagination.currentPage * 10, pagination.totalCount)} {t("common.of")} {pagination.totalCount} {t("publications.publicationsCount")}
                 </div>
               )}
             </div>

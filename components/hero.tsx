@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { CTAButton } from "./ui/cta-button";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { FloatingLocationMap } from "./floating-location-map";
+import { useTranslation } from "@/lib/i18n";
 
 interface HeroProps {
   showMap?: boolean;
@@ -17,6 +18,7 @@ interface HeroProps {
 export function Hero({ showMap = true, mapData }: HeroProps) {
   const [current, setCurrent] = useState(0);
   const [isAutoPlay, setIsAutoPlay] = useState(true);
+  const { t } = useTranslation();
 
   const images = [
     "/Photos/Other photos/IMG1.jpg",
@@ -75,7 +77,7 @@ export function Hero({ showMap = true, mapData }: HeroProps) {
       <div className="relative z-10 h-full flex flex-col items-center justify-center text-center px-4 sm:px-6 lg:px-8">
         <div>
           <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-10 max-w-5xl leading-tight">
-            Welcome to PIERS lab
+            {t("hero.welcome")}
           </h1>
 
 
@@ -85,8 +87,8 @@ export function Hero({ showMap = true, mapData }: HeroProps) {
       {/* Floating Location Map Widget - Right Side */}
       {showMap && (
         <div className="absolute right-8 top-1/2 -translate-y-1/2 z-30 hidden lg:block">
-          <FloatingLocationMap 
-            personName={mapData?.name || "Research Lab"} 
+          <FloatingLocationMap
+            personName={mapData?.name || "Research Lab"}
             latitude={mapData?.lat}
             longitude={mapData?.lng}
           />

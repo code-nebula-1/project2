@@ -1,6 +1,6 @@
 import { getPaginatedNews } from "@/actions/news";
 import { NewsComponent } from "@/components/news";
-import { PageTitle } from "@/components/page-title";
+import { TranslatedPageTitle } from "@/components/translated-page-title";
 
 type Props = {
   searchParams: Promise<{ page?: string }>;
@@ -15,9 +15,9 @@ export default async function NewsPage({ searchParams }: Props) {
     <div className="min-h-screen">
       <section className="relative py-24 px-4">
         <div className="container mx-auto max-w-7xl">
-          <PageTitle
-            title="News & Updates"
-            subtitle="Stay updated with the latest news, announcements, and social media highlights"
+          <TranslatedPageTitle
+            titleKey="news.title"
+            subtitleKey="news.subtitle"
             size="large"
             className="mb-8"
           />

@@ -7,45 +7,87 @@
     "publications": "Publications"
   },
   "common": {
-    "readMore": "Read more",
+    "readMore": "Read More",
     "loadMore": "Load more",
     "loading": "Loading...",
     "noResults": "No results found",
     "search": "Search",
     "close": "Close",
     "menu": "Menu",
-    "language": "Language"
+    "language": "Language",
+    "showing": "Showing",
+    "of": "of",
+    "previous": "Previous",
+    "next": "Next"
   },
   "hero": {
-    "welcome": "Welcome to PIERS Lab",
-    "subtitle": "Pioneering Innovation and Excellence in Research"
+    "welcome": "Welcome to PIERS lab"
   },
   "contact": {
     "title": "Contact Us",
-    "name": "Name",
-    "email": "Email",
+    "pageTitle": "Send us a Message",
+    "pageSubtitle": "Fill out the form below and we'll get back to you as soon as possible.",
+    "infoTitle": "Contact Information",
+    "infoSubtitle": "Multiple ways to reach our research lab",
+    "name": "Full Name",
+    "namePlaceholder": "Your full name",
+    "email": "Email Address",
+    "emailPlaceholder": "your.email@example.com",
+    "subject": "Subject",
+    "subjectPlaceholder": "What's this about?",
     "message": "Message",
+    "messagePlaceholder": "Tell us more about your inquiry...",
     "send": "Send Message",
     "success": "Message sent successfully!",
-    "error": "Failed to send message"
+    "error": "Failed to send message",
+    "emailLabel": "Email",
+    "addressLabel": "Address",
+    "generalInquiries": "General inquiries",
+    "location": "Location",
+    "opportunities": "Opportunities",
+    "phdPositions": "PhD & Postdoc Positions"
+  },
+  "joinTeam": {
+    "title": "Join Our Team",
+    "subtitle": "We're always looking for talented researchers and collaborators",
+    "applyNow": "Apply Now",
+    "learnMore": "Learn More"
   },
   "teams": {
-    "title": "Our Team",
-    "subtitle": "Meet the researchers behind our work"
+    "title": "Meet the Team",
+    "subtitle": "Our diverse team of researchers, faculty, and students working at the intersection of human-computer interaction and robotics.",
+    "clickToView": "Click to view profile",
+    "teamMember": "Team Member",
+    "biography": "Biography"
   },
   "news": {
-    "title": "News",
-    "subtitle": "Latest updates and announcements",
+    "title": "News & Updates",
+    "subtitle": "Stay updated with the latest news, announcements, and social media highlights",
+    "featured": "Featured",
+    "allNews": "All News",
+    "allNewsSubtitle": "Latest updates and announcements",
+    "noNews": "No news found.",
+    "newsItems": "news items",
     "postedOn": "Posted on",
     "by": "by"
   },
   "publications": {
     "title": "Publications",
-    "subtitle": "Our research publications and papers"
+    "subtitle": "Explore our research contributions and published works",
+    "noPublications": "No publications found.",
+    "authors": "Authors",
+    "journal": "Journal",
+    "doi": "DOI",
+    "citations": "Citations",
+    "viewPaper": "View Paper",
+    "cite": "Cite",
+    "copied": "Copied!",
+    "publicationsCount": "publications"
   },
   "footer": {
-    "rights": "All rights reserved",
-    "privacy": "Privacy Policy",
-    "terms": "Terms of Service"
+    "rights": "All rights reserved.",
+    "contact": "Contact",
+    "publications": "Publications",
+    "team": "Team"
   }
 }
