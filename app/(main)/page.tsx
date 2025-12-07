@@ -1,5 +1,3 @@
-"use client";
-
 import { Hero } from "@/components/hero";
 import { ResearchAreas } from "@/components/research-areas";
 import { FeaturedProjects } from "@/components/featured-projects";
@@ -8,16 +6,32 @@ import { Contact } from "@/components/contact";
 import { Values } from "@/components/value"
 import { Header } from "@/components/header";
 import { ResearchInAction } from "@/components/research-in-action";
+import { getJoinTeamSettings, getMapLocationSettings } from "@/actions/settings";
 
-export default function Home() {
+export default async function Home() {
+  const [joinTeamSettings, locationSettings] = await Promise.all([
+    getJoinTeamSettings(),
+    getMapLocationSettings(),
+  ]);
+
   return (
     <>
       <Header />
-      <Hero />
-      {/* <ResearchAreas /> */}
-      {/* <ResearchInAction /> */}
+      <Hero
+        showMap={locationSettings?.status}
+        mapData={{
+          name: locationSettings?.data?.name,
+          lat: locationSettings?.data?.lat,
+          lng: locationSettings?.data?.lng,
+        }}
+      />
+
       <Values />
-      <Contact />
+      <Contact
+        title={joinTeamSettings?.data?.title}
+        content={joinTeamSettings?.data?.content}
+        showApplyButton={joinTeamSettings?.status}
+      />
     </>
   );
 }

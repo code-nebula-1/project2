@@ -71,6 +71,53 @@ export async function getPublications(): Promise<Publication[]> {
   }
 }
 
+export type PaginatedPublications = {
+  publications: Publication[];
+  totalCount: number;
+  totalPages: number;
+  currentPage: number;
+  pageSize: number;
+};
+
+// Get paginated publications (sorted by createdAt descending - most recent first)
+export async function getPaginatedPublications(
+  page: number = 1,
+  pageSize: number = 10
+): Promise<PaginatedPublications> {
+  try {
+    const skip = (page - 1) * pageSize;
+    
+    const [publications, totalCount] = await Promise.all([
+      prisma.publication.findMany({
+        orderBy: { createdAt: 'desc' },
+        skip,
+        take: pageSize,
+        include: {
+          createdBy: {
+            select: {
+              id: true,
+              email: true,
+              name: true,
+            },
+          },
+        },
+      }),
+      prisma.publication.count(),
+    ]);
+
+    return {
+      publications,
+      totalCount,
+      totalPages: Math.ceil(totalCount / pageSize),
+      currentPage: page,
+      pageSize,
+    };
+  } catch (error) {
+    console.error('Failed to fetch paginated publications:', error);
+    throw new Error('Failed to fetch publications');
+  }
+}
+
 // Get publication by ID
 export async function getPublicationById(id: string): Promise<Publication | null> {
   try {
