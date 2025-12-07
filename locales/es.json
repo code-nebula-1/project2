@@ -1,0 +1,51 @@
+{
+  "nav": {
+    "home": "Inicio",
+    "contact": "Contacto",
+    "teams": "Equipos",
+    "news": "Noticias",
+    "publications": "Publicaciones"
+  },
+  "common": {
+    "readMore": "Leer más",
+    "loadMore": "Cargar más",
+    "loading": "Cargando...",
+    "noResults": "No se encontraron resultados",
+    "search": "Buscar",
+    "close": "Cerrar",
+    "menu": "Menú",
+    "language": "Idioma"
+  },
+  "hero": {
+    "welcome": "Bienvenido a PIERS Lab",
+    "subtitle": "Innovación Pionera y Excelencia en Investigación"
+  },
+  "contact": {
+    "title": "Contáctenos",
+    "name": "Nombre",
+    "email": "Correo electrónico",
+    "message": "Mensaje",
+    "send": "Enviar Mensaje",
+    "success": "¡Mensaje enviado exitosamente!",
+    "error": "Error al enviar el mensaje"
+  },
+  "teams": {
+    "title": "Nuestro Equipo",
+    "subtitle": "Conoce a los investigadores detrás de nuestro trabajo"
+  },
+  "news": {
+    "title": "Noticias",
+    "subtitle": "Últimas actualizaciones y anuncios",
+    "postedOn": "Publicado el",
+    "by": "por"
+  },
+  "publications": {
+    "title": "Publicaciones",
+    "subtitle": "Nuestras publicaciones e investigaciones"
+  },
+  "footer": {
+    "rights": "Todos los derechos reservados",
+    "privacy": "Política de Privacidad",
+    "terms": "Términos de Servicio"
+  }
+}

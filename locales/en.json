@@ -1,0 +1,51 @@
+{
+  "nav": {
+    "home": "Home",
+    "contact": "Contact",
+    "teams": "Teams",
+    "news": "News",
+    "publications": "Publications"
+  },
+  "common": {
+    "readMore": "Read more",
+    "loadMore": "Load more",
+    "loading": "Loading...",
+    "noResults": "No results found",
+    "search": "Search",
+    "close": "Close",
+    "menu": "Menu",
+    "language": "Language"
+  },
+  "hero": {
+    "welcome": "Welcome to PIERS Lab",
+    "subtitle": "Pioneering Innovation and Excellence in Research"
+  },
+  "contact": {
+    "title": "Contact Us",
+    "name": "Name",
+    "email": "Email",
+    "message": "Message",
+    "send": "Send Message",
+    "success": "Message sent successfully!",
+    "error": "Failed to send message"
+  },
+  "teams": {
+    "title": "Our Team",
+    "subtitle": "Meet the researchers behind our work"
+  },
+  "news": {
+    "title": "News",
+    "subtitle": "Latest updates and announcements",
+    "postedOn": "Posted on",
+    "by": "by"
+  },
+  "publications": {
+    "title": "Publications",
+    "subtitle": "Our research publications and papers"
+  },
+  "footer": {
+    "rights": "All rights reserved",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Service"
+  }
+}
