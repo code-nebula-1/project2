@@ -10,8 +10,6 @@ import { LanguageSelector } from "./language-selector";
 
 interface MobileMenuProps {
   className?: string;
-  isScrolled?: boolean;
-  shouldUseWhiteText?: boolean;
 }
 
 const menuItems = [
@@ -24,8 +22,6 @@ const menuItems = [
 
 export const MobileMenu = ({
   className,
-  isScrolled = false,
-  shouldUseWhiteText = false,
 }: MobileMenuProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const { t } = useTranslation();
@@ -39,8 +35,7 @@ export const MobileMenu = ({
       <Dialog.Trigger asChild>
         <button
           className={cn(
-            "group lg:hidden p-2 transition-colors",
-            shouldUseWhiteText ? "text-white" : "text-foreground",
+            "group lg:hidden p-2 transition-colors text-black",
             className
           )}
           aria-label={t("common.menu")}
@@ -69,25 +64,29 @@ export const MobileMenu = ({
         >
           <Dialog.Title className="sr-only">{t("common.menu")}</Dialog.Title>
 
-          <nav className="flex flex-col space-y-6 container mx-auto">
+          <nav className="flex flex-col space-y-6 container mx-auto bg-white rounded-lg p-6 relative">
+            <Dialog.Close asChild>
+              <button
+                className="absolute top-4 right-4 p-2 text-black/60 hover:text-black transition-colors"
+                aria-label={t("common.close")}
+              >
+                <X size={24} />
+              </button>
+            </Dialog.Close>
             {menuItems.map((item) => (
               <Link
                 key={item.key}
                 href={item.href}
                 onClick={handleLinkClick}
-                className={`text-xl font-mono uppercase transition-colors ease-out duration-150 py-2 ${shouldUseWhiteText
-                    ? "text-white/60 hover:text-white/100"
-                    : "text-foreground/60 hover:text-foreground/100"
-                  }`}
+                className="text-xl font-mono uppercase transition-colors ease-out duration-150 py-2 text-black/60 hover:text-black"
               >
                 {t(`nav.${item.key}`)}
               </Link>
             ))}
 
             {/* Language selector for mobile */}
-            <div className="pt-4 border-t border-foreground/10">
-              <p className={`text-sm font-mono mb-2 ${shouldUseWhiteText ? "text-white/40" : "text-foreground/40"
-                }`}>
+            <div className="pt-4 border-t border-black/10">
+              <p className="text-sm font-mono mb-2 text-black/40">
                 {t("common.language")}
               </p>
               <LanguageSelector />
