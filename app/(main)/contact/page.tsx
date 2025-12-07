@@ -5,18 +5,21 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { PageTitle } from "@/components/page-title";
 import { Mail, Phone, MapPin, User, MessageSquare } from "lucide-react";
+import { useTranslation } from "@/lib/i18n";
 
 export default function Contact() {
+  const { t } = useTranslation();
+
   const contactInfo = [
     {
       icon: Mail,
-      title: "Email",
+      title: t("contact.emailLabel"),
       details: "uml.piers.lab@gmail.com",
-      description: "General inquiries",
+      description: t("contact.generalInquiries"),
     },
     {
       icon: MapPin,
-      title: "Address",
+      title: t("contact.addressLabel"),
       details: "Southwick 304",
       description: "University of Massachusetts Lowell, Lowell, MA 01854-3607",
     },
@@ -35,8 +38,8 @@ export default function Contact() {
             {/* Contact Form */}
             <div>
               <PageTitle
-                title="Send us a Message"
-                subtitle="Fill out the form below and we'll get back to you as soon as possible."
+                title={t("contact.pageTitle")}
+                subtitle={t("contact.pageSubtitle")}
                 size="large"
               />
 
@@ -108,11 +111,11 @@ export default function Contact() {
                     Send Message
                   </CTAButton>
                 </form>*/}
-                <iframe 
-                  src="https://docs.google.com/forms/d/e/1FAIpQLSfDszT5avdzeiYpIUGmxOGqH0_Rt4pIErqUdT4q8e1BmcQLCA/viewform?embedded=true" 
-                  width="550" 
+                <iframe
+                  src="https://docs.google.com/forms/d/e/1FAIpQLSfDszT5avdzeiYpIUGmxOGqH0_Rt4pIErqUdT4q8e1BmcQLCA/viewform?embedded=true"
+                  width="550"
                   height="821">
-                    Loading…
+                  Loading…
                 </iframe>
               </div>
             </div>
@@ -120,8 +123,8 @@ export default function Contact() {
             {/* Contact Information */}
             <div className="space-y-8">
               <PageTitle
-                title="Contact Information"
-                subtitle="Multiple ways to reach our research lab"
+                title={t("contact.infoTitle")}
+                subtitle={t("contact.infoSubtitle")}
                 size="large"
               />
 

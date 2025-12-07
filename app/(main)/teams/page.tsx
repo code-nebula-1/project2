@@ -1,5 +1,5 @@
 import { Team } from "@/components/team";
-import { PageTitle } from "@/components/page-title";
+import { TranslatedPageTitle } from "@/components/translated-page-title";
 import { getTeamMembers } from "@/actions/teams";
 
 export default async function Teams() {
@@ -10,9 +10,9 @@ export default async function Teams() {
       {/* Main Profile Section */}
       <section className="relative py-24 px-4">
         <div className="container mx-auto max-w-7xl">
-          <PageTitle
-            title="Meet the Team"
-            subtitle="Our diverse team of researchers, faculty, and students working at the intersection of human-computer interaction and robotics."
+          <TranslatedPageTitle
+            titleKey="teams.title"
+            subtitleKey="teams.subtitle"
             size="large"
           />
           {/* Profile Image and Basic Info */}

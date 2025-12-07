@@ -81,6 +81,7 @@
     "react-hook-form": "^7.60.0",
     "react-native": "latest",
     "react-resizable-panels": "^2.1.7",
+    "react-social-media-embed": "^2.5.18",
     "recharts": "2.15.4",
     "server-only": "^0.0.1",
     "sonner": "^1.7.4",

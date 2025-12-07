@@ -74,3 +74,24 @@ model Settings {
   @@map("settings")
 }
 
+model News {
+  id          String    @id @default(cuid())
+  title       String
+  content     String?   @db.Text
+  url         String?   // For social media embeds (Twitter, Instagram, etc.)
+  type        String    @default("announcement") // announcement, blog, social_embed
+  platform    String?   // twitter, instagram, facebook, medium, youtube, linkedin, tiktok
+  featured    Boolean   @default(false)
+  status      Boolean   @default(true) // true = visible/active, false = hidden/inactive
+  addedBy     String?   @map("added_by") // Optional author name as string
+  publishedAt DateTime? @map("published_at") // Optional custom date
+  createdAt   DateTime  @default(now()) @map("created_at")
+  updatedAt   DateTime  @updatedAt @map("updated_at")
+  
+  @@map("news")
+  @@index([type])
+  @@index([featured])
+  @@index([status])
+  @@index([publishedAt])
+}
+

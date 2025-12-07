@@ -13,6 +13,7 @@ import Image from "next/image";
 import { Mail, User2 } from "lucide-react";
 import { useState } from "react";
 import type { Team as TeamMember } from "@/actions/teams";
+import { useTranslation } from "@/lib/i18n";
 
 interface TeamProps {
   members: TeamMember[];
@@ -20,6 +21,7 @@ interface TeamProps {
 
 export function Team({ members }: TeamProps) {
   const [selectedMember, setSelectedMember] = useState<TeamMember | null>(null);
+  const { t } = useTranslation();
 
   const renderMemberCard = (member: TeamMember) => (
     <Dialog key={member.id}>
@@ -45,11 +47,11 @@ export function Team({ members }: TeamProps) {
                   {member.name}
                 </h3>
                 <p className="text-sm text-white/90 line-clamp-2 leading-snug">
-                  {member.role || 'Team Member'}
+                  {member.role || t("teams.teamMember")}
                 </p>
                 <div className="mt-3 flex items-center gap-2 text-xs text-white/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                   <User2 className="w-3.5 h-3.5" />
-                  <span>Click to view profile</span>
+                  <span>{t("teams.clickToView")}</span>
                 </div>
               </div>
             </div>
@@ -74,7 +76,7 @@ export function Team({ members }: TeamProps) {
                 {member.name}
               </DialogTitle>
               <DialogDescription className="text-base text-foreground/70">
-                {member.role || 'Team Member'}
+                {member.role || t("teams.teamMember")}
               </DialogDescription>
               {member.contact && (
                 <div className="pt-2 flex items-center gap-2">
@@ -94,7 +96,7 @@ export function Team({ members }: TeamProps) {
 
         {member.description && (
           <div className="mt-6">
-            <h4 className="text-lg font-semibold mb-3">Biography</h4>
+            <h4 className="text-lg font-semibold mb-3">{t("teams.biography")}</h4>
             <p className="text-foreground/80 leading-relaxed whitespace-pre-wrap">
               {member.description}
             </p>

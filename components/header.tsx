@@ -5,11 +5,22 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { Logo } from "./logo";
 import { MobileMenu } from "./mobile-menu";
+import { LanguageSelector } from "./language-selector";
 import { usePathname } from "next/navigation";
+import { useTranslation } from "@/lib/i18n";
+
+const navItems = [
+  { key: "home", href: "/" },
+  { key: "contact", href: "/contact" },
+  { key: "teams", href: "/teams" },
+  { key: "news", href: "/news" },
+  { key: "publications", href: "/publications" },
+];
 
 export const Header = () => {
   const [scrollY, setScrollY] = useState(0);
   const pathname = usePathname();
+  const { t } = useTranslation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -42,32 +53,35 @@ export const Header = () => {
       <header className="relative flex items-center mx-auto justify-between container">
         <Link
           href="/"
-          className={`transition-all duration-300 ${
-            showLogo ? "opacity-100" : "opacity-0 pointer-events-none"
-          }`}
+          className={`transition-all duration-300 ${showLogo ? "opacity-100" : "opacity-0 pointer-events-none"
+            }`}
         >
           <Logo
-            className={`transition-all duration-300 ${
-              isScrolled ? "w-[70px] md:w-[90px]" : "w-[70px] md:w-[90px]"
-            }`}
+            className={`transition-all duration-300 ${isScrolled ? "w-[70px] md:w-[90px]" : "w-[70px] md:w-[90px]"
+              }`}
           />
         </Link>
         <nav className={"flex max-lg:hidden absolute left-1/2 -translate-x-1/2 items-center gap-x-10 p-2 "}>
-          {["Home", "Contact", "Teams", "News", "Publication"].map((item) => (
+          {navItems.map((item) => (
             <Link
               className={"uppercase inline-block font-mono duration-150 transition-colors ease-out text-foreground/60 hover:text-foreground/100"}
-              href={item === "Home" ? "/" : `/${item.toLowerCase()}`}
-              key={item}
+              href={item.href}
+              key={item.key}
             >
-              {item}
+              {t(`nav.${item.key}`)}
             </Link>
           ))}
         </nav>
-        <div className="flex items-center lg:hidden">
-          <MobileMenu
-            isScrolled={isScrolled}
-            shouldUseWhiteText={shouldUseWhiteText}
-          />
+        <div className="flex items-center gap-2">
+          <div className="max-lg:hidden">
+            <LanguageSelector />
+          </div>
+          <div className="lg:hidden">
+            <MobileMenu
+              isScrolled={isScrolled}
+              shouldUseWhiteText={shouldUseWhiteText}
+            />
+          </div>
         </div>
       </header>
     </div>
