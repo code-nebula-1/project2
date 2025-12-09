@@ -21,17 +21,22 @@ export function LanguageSelector({ className }: LanguageSelectorProps) {
     <Select value={locale} onValueChange={(value) => setLocale(value as Locale)}>
       <SelectTrigger
         className={`w-[130px] h-9 border-none bg-transparent focus:ring-0 focus:ring-offset-0 ${className}`}
+        aria-label={`Select language. Currently selected: ${localeNames[locale]}`}
       >
         <div className="flex items-center gap-2">
-          <Globe className="h-4 w-4 opacity-60" />
+          <Globe className="h-4 w-4 opacity-60" aria-hidden="true" />
           <SelectValue />
         </div>
       </SelectTrigger>
       <SelectContent>
         {(Object.keys(localeNames) as Locale[]).map((loc) => (
-          <SelectItem key={loc} value={loc}>
+          <SelectItem
+            key={loc}
+            value={loc}
+            aria-label={`${localeNames[loc]}${loc === locale ? ' (currently selected)' : ''}`}
+          >
             <span className="flex items-center gap-2">
-              <span className="text-base">{loc === "en" ? "🇺🇸" : "🇪🇸"}</span>
+              <span className="text-base" aria-hidden="true">{loc === "en" ? "🇺🇸" : "🇪🇸"}</span>
               {localeNames[loc]}
             </span>
           </SelectItem>

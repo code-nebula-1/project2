@@ -45,10 +45,10 @@ export function Values() {
   return (
     <div className="">
       {/* Core Values */}
-      <section className="relative py-24 px-4">
+      <section className="relative py-24 px-4" aria-labelledby="values-heading">
         <div className="container mx-auto max-w-7xl">
           <div className="mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4 text-balance">
+            <h2 id="values-heading" className="text-4xl md:text-5xl font-bold mb-4 text-balance">
               Core Values
             </h2>
             <p className="text-lg text-foreground/70 max-w-2xl text-pretty">
@@ -57,22 +57,29 @@ export function Values() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <ul
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 list-none p-0"
+            role="list"
+            aria-label="Core values list"
+          >
             {values.map((value, index) => {
               const Icon = value.icon;
               return (
-                <div key={index} className="text-center group">
-                  <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-105 transition-transform duration-300">
-                    <Icon className="w-8 h-8 text-primary" />
+                <li key={index} className="text-center group">
+                  <div
+                    className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-105 transition-transform duration-300"
+                    aria-hidden="true"
+                  >
+                    <Icon className="w-8 h-8 text-primary" aria-hidden="true" />
                   </div>
                   <h3 className="text-xl font-bold mb-4">{value.title}</h3>
                   <p className="text-foreground/70 text-pretty">
                     {value.description}
                   </p>
-                </div>
+                </li>
               );
             })}
-          </div>
+          </ul>
         </div>
       </section>
     </div>

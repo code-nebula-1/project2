@@ -9,12 +9,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-   <>
-        <LayoutClient>
-          <Header />
+    <>
+      <LayoutClient>
+        <Header />
+        <main id="main-content" role="main" tabIndex={-1}>
           {children}
-          <Footer />
-        </LayoutClient>
-     </>
+        </main>
+        <Footer />
+      </LayoutClient>
+    </>
   );
 }
