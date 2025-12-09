@@ -31,9 +31,7 @@ export const Header = () => {
 
   // Calculate scroll-based effects
   const backdropBlur = scrollY > 50 ? "backdrop-blur-md" : "backdrop-blur-none";
-  const showLogo = scrollY < 50; // Hide logo when scrolled more than 50px
   const isScrolled = scrollY > 50; // Check if scrolled for height reduction
-  const showBackground = scrollY > 50; // Show background when scrolled
 
   return (
     <div
@@ -45,8 +43,7 @@ export const Header = () => {
       <header className="relative flex items-center mx-auto justify-between container">
         <Link
           href="/"
-          className={`transition-all duration-300 ${showLogo ? "opacity-100" : "opacity-0 pointer-events-none"
-            }`}
+          className="transition-all duration-300"
         >
           <Logo
             className={`transition-all duration-300 ${isScrolled ? "w-[70px] md:w-[90px]" : "w-[70px] md:w-[90px]"
