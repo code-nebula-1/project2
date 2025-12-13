@@ -148,93 +148,112 @@ export function NewsComponent({ news, pagination }: NewsProps) {
 
   return (
     <div className="min-h-screen">
-
-
       {/* All News */}
-      <section className="relative  px-4 bg-muted/30">
+      <section
+        className="relative px-4 bg-muted/30"
+        aria-label="News and updates"
+      >
         <div className="container mx-auto max-w-7xl">
-
           {news.length === 0 ? (
-            <div className="text-center py-12 text-foreground/60">
+            <div className="text-center py-12 text-foreground/60" role="status">
               {t("news.noNews")}
             </div>
           ) : (
             <>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <ul
+                className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 list-none p-0"
+                role="list"
+                aria-label="News articles list"
+              >
                 {news.map((item) => {
                   const Icon = item.type === "social_embed"
                     ? getPlatformIcon(item.platform)
                     : getTypeIcon(item.type);
                   return (
-                    <Card
-                      key={item.id}
-                      className="group overflow-hidden hover:shadow-lg transition-all duration-300 border-border bg-card hover:bg-card/80"
-                    >
-                      <CardContent className="p-6">
-                        <div className="flex items-center justify-between mb-4">
-                          <div className="flex items-center space-x-2">
-                            <Icon className="w-4 h-4 text-primary" />
-                            <Badge
-                              variant="secondary"
-                              className={`text-xs font-medium ${getTypeColor(item.type)}`}
-                            >
-                              {formatType(item.type)}
-                            </Badge>
+                    <li key={item.id}>
+                      <Card
+                        className="group overflow-hidden hover:shadow-lg transition-all duration-300 border-border bg-card hover:bg-card/80 h-full"
+                        role="article"
+                        aria-labelledby={`news-title-${item.id}`}
+                      >
+                        <CardContent className="p-6">
+                          <div className="flex items-center justify-between mb-4">
+                            <div className="flex items-center space-x-2">
+                              <Icon className="w-4 h-4 text-primary" aria-hidden="true" />
+                              <Badge
+                                variant="secondary"
+                                className={`text-xs font-medium ${getTypeColor(item.type)}`}
+                              >
+                                {formatType(item.type)}
+                              </Badge>
+                            </div>
+                            {(item.publishedAt || item.createdAt) && (
+                              <time
+                                className="text-xs text-foreground/60 font-mono"
+                                dateTime={new Date(item.publishedAt || item.createdAt!).toISOString()}
+                              >
+                                {formatDate(item.publishedAt || item.createdAt, locale)}
+                              </time>
+                            )}
                           </div>
-                          {(item.publishedAt || item.createdAt) && (
-                            <span className="text-xs text-foreground/60 font-mono">
-                              {formatDate(item.publishedAt || item.createdAt, locale)}
-                            </span>
+                          <h3
+                            id={`news-title-${item.id}`}
+                            className="text-lg font-semibold mb-3 line-clamp-2 group-hover:text-primary transition-colors"
+                          >
+                            {item.title}
+                          </h3>
+
+                          {/* Show content preview if not social embed */}
+                          {item.content && item.type !== "social_embed" && (
+                            <p className="text-sm text-foreground/70 mb-4 line-clamp-3 text-pretty">
+                              {item.content}
+                            </p>
                           )}
-                        </div>
-                        <h3 className="text-lg font-semibold mb-3 line-clamp-2 group-hover:text-primary transition-colors">
-                          {item.title}
-                        </h3>
 
-                        {/* Show content preview if not social embed */}
-                        {item.content && item.type !== "social_embed" && (
-                          <p className="text-sm text-foreground/70 mb-4 line-clamp-3 text-pretty">
-                            {item.content}
-                          </p>
-                        )}
+                          {/* Show social embed preview */}
+                          {item.type === "social_embed" && item.url && (
+                            <div className="mb-4 max-h-[300px] overflow-hidden rounded-lg">
+                              <SocialEmbed url={item.url} platform={item.platform} />
+                            </div>
+                          )}
 
-                        {/* Show social embed preview */}
-                        {item.type === "social_embed" && item.url && (
-                          <div className="mb-4 max-h-[300px] overflow-hidden rounded-lg">
-                            <SocialEmbed url={item.url} platform={item.platform} />
+                          <div className="flex items-center justify-between">
+                            {item.addedBy && (
+                              <span className="text-xs text-foreground/60">
+                                <span className="sr-only">Posted by: </span>
+                                {item.addedBy}
+                              </span>
+                            )}
+                            {!item.addedBy && <span />}
+                            {item.url && item.type !== "social_embed" && (
+                              <CTAButton
+                                size="sm"
+                                className="group/btn"
+                                textStyle="default"
+                                href={item.url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                aria-label={`${t("common.readMore")} about ${item.title} (opens in new tab)`}
+                              >
+                                {t("common.readMore")}
+                                <ArrowRight className="ml-1 w-3 h-3 transition-transform group-hover/btn:translate-x-0.5" aria-hidden="true" />
+                              </CTAButton>
+                            )}
                           </div>
-                        )}
-
-                        <div className="flex items-center justify-between">
-                          {item.addedBy && (
-                            <span className="text-xs text-foreground/60">
-                              {item.addedBy}
-                            </span>
-                          )}
-                          {!item.addedBy && <span />}
-                          {item.url && item.type !== "social_embed" && (
-                            <CTAButton
-                              size="sm"
-                              className="group/btn"
-                              textStyle="default"
-                              href={item.url}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                            >
-                              {t("common.readMore")}
-                              <ArrowRight className="ml-1 w-3 h-3 transition-transform group-hover/btn:translate-x-0.5" />
-                            </CTAButton>
-                          )}
-                        </div>
-                      </CardContent>
-                    </Card>
+                        </CardContent>
+                      </Card>
+                    </li>
                   );
                 })}
-              </div>
+              </ul>
 
               {/* Pagination Controls */}
               {pagination && pagination.totalPages > 1 && (
-                <div className="flex items-center justify-center gap-1.5 pt-8">
+                <nav
+                  className="flex items-center justify-center gap-1.5 pt-8"
+                  role="navigation"
+                  aria-label="News pagination"
+                >
                   {/* Previous Button */}
                   <Button
                     variant="outline"
@@ -242,25 +261,28 @@ export function NewsComponent({ news, pagination }: NewsProps) {
                     className="h-8 w-8 rounded-full"
                     disabled={pagination.currentPage === 1}
                     asChild={pagination.currentPage !== 1}
+                    aria-label={`Go to previous page, page ${pagination.currentPage - 1}`}
                   >
                     {pagination.currentPage === 1 ? (
-                      <span>
+                      <span aria-hidden="true">
                         <ChevronLeft className="h-4 w-4" />
                       </span>
                     ) : (
                       <Link href={`/news?page=${pagination.currentPage - 1}`}>
-                        <ChevronLeft className="h-4 w-4" />
+                        <ChevronLeft className="h-4 w-4" aria-hidden="true" />
+                        <span className="sr-only">Previous page</span>
                       </Link>
                     )}
                   </Button>
 
                   {/* Page Numbers */}
-                  <div className="flex items-center gap-1">
+                  <div className="flex items-center gap-1" role="list" aria-label="Page numbers">
                     {getPageNumbers().map((page, idx) =>
                       page === "ellipsis" ? (
                         <span
                           key={`ellipsis-${idx}`}
                           className="px-1 text-foreground/50 text-sm"
+                          aria-hidden="true"
                         >
                           ...
                         </span>
@@ -273,6 +295,8 @@ export function NewsComponent({ news, pagination }: NewsProps) {
                           size="icon"
                           className="h-8 w-8 rounded-full text-xs"
                           asChild={pagination.currentPage !== page}
+                          aria-label={pagination.currentPage === page ? `Current page, page ${page}` : `Go to page ${page}`}
+                          aria-current={pagination.currentPage === page ? "page" : undefined}
                         >
                           {pagination.currentPage === page ? (
                             <span>{page}</span>
@@ -297,24 +321,30 @@ export function NewsComponent({ news, pagination }: NewsProps) {
                       pagination.currentPage !== pagination.totalPages &&
                       pagination.totalPages > 0
                     }
+                    aria-label={`Go to next page, page ${pagination.currentPage + 1}`}
                   >
                     {pagination.currentPage === pagination.totalPages ||
                       pagination.totalPages === 0 ? (
-                      <span>
+                      <span aria-hidden="true">
                         <ChevronRight className="h-4 w-4" />
                       </span>
                     ) : (
                       <Link href={`/news?page=${pagination.currentPage + 1}`}>
-                        <ChevronRight className="h-4 w-4" />
+                        <ChevronRight className="h-4 w-4" aria-hidden="true" />
+                        <span className="sr-only">Next page</span>
                       </Link>
                     )}
                   </Button>
-                </div>
+                </nav>
               )}
 
               {/* Results Info */}
               {pagination && (
-                <div className="text-center text-sm text-foreground/50 pt-2">
+                <div
+                  className="text-center text-sm text-foreground/50 pt-2"
+                  role="status"
+                  aria-live="polite"
+                >
                   {t("common.showing")}{" "}
                   {(pagination.currentPage - 1) * 10 + 1}–
                   {Math.min(pagination.currentPage * 10, pagination.totalCount)} {t("common.of")}{" "}

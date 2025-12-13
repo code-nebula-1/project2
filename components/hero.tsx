@@ -15,6 +15,13 @@ interface HeroProps {
   };
 }
 
+const imageDescriptions = [
+  "Researchers collaborating in the PIERS Lab workspace",
+  "Team members conducting experiments with advanced equipment",
+  "PIERS Lab group discussion and brainstorming session",
+  "Laboratory equipment and research tools in use",
+];
+
 export function Hero({ showMap = true, mapData }: HeroProps) {
   const [current, setCurrent] = useState(0);
   const [isAutoPlay, setIsAutoPlay] = useState(true);
@@ -53,18 +60,33 @@ export function Hero({ showMap = true, mapData }: HeroProps) {
   };
 
   return (
-    <div className="relative h-screen w-full overflow-hidden bg-black">
+    <section
+      className="relative h-screen w-full overflow-hidden bg-black"
+      aria-roledescription="carousel"
+      aria-label="PIERS Lab image carousel showcasing our research environment"
+    >
+      {/* Screen reader announcement for slide changes */}
+      <div
+        role="status"
+        aria-live="polite"
+        aria-atomic="true"
+        className="sr-only"
+      >
+        Slide {current + 1} of {images.length}: {imageDescriptions[current]}
+      </div>
+
       {/* Image Slides with Dark Background */}
-      <div className="absolute inset-0 bg-black">
+      <div className="absolute inset-0 bg-black" aria-hidden="true">
         {images.map((image, index) => (
           <div
             key={index}
             className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${index === current ? "opacity-100" : "opacity-0"
               }`}
+            aria-hidden={index !== current}
           >
             <img
               src={image}
-              alt="PIERS Lab"
+              alt={imageDescriptions[index]}
               className="w-full h-full object-cover"
             />
             {/* Dark Gradient Overlay for better text readability */}
@@ -79,8 +101,6 @@ export function Hero({ showMap = true, mapData }: HeroProps) {
           <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-10 max-w-5xl leading-tight">
             {t("hero.welcome")}
           </h1>
-
-
         </div>
       </div>
 
@@ -99,33 +119,39 @@ export function Hero({ showMap = true, mapData }: HeroProps) {
       <button
         onClick={prevSlide}
         className="absolute left-4 top-1/2 -translate-y-1/2 z-20 p-2 sm:p-3 rounded-full bg-white/10 backdrop-blur-sm text-white hover:bg-white/20 transition-all duration-200 group"
-        aria-label="Previous slide"
+        aria-label={`Previous slide. Currently on slide ${current + 1} of ${images.length}`}
       >
-        <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6 group-hover:scale-110 transition-transform" />
+        <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6 group-hover:scale-110 transition-transform" aria-hidden="true" />
       </button>
 
       <button
         onClick={nextSlide}
         className="absolute right-4 top-1/2 -translate-y-1/2 z-20 p-2 sm:p-3 rounded-full bg-white/10 backdrop-blur-sm text-white hover:bg-white/20 transition-all duration-200 group"
-        aria-label="Next slide"
+        aria-label={`Next slide. Currently on slide ${current + 1} of ${images.length}`}
       >
-        <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6 group-hover:scale-110 transition-transform" />
+        <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6 group-hover:scale-110 transition-transform" aria-hidden="true" />
       </button>
 
       {/* Dot Indicators */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 flex gap-2">
+      <nav
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 flex gap-2"
+        role="tablist"
+        aria-label="Carousel slide indicators"
+      >
         {images.map((_, index) => (
           <button
             key={index}
             onClick={() => goToSlide(index)}
+            role="tab"
+            aria-selected={index === current}
+            aria-label={`Go to slide ${index + 1} of ${images.length}`}
             className={`transition-all duration-300 rounded-full ${index === current
               ? "bg-white w-8 h-2"
               : "bg-white/50 w-2 h-2 hover:bg-white/75"
               }`}
-            aria-label={`Go to slide ${index + 1}`}
           />
         ))}
-      </div>
-    </div>
+      </nav>
+    </section>
   );
 }

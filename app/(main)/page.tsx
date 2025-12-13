@@ -26,7 +26,7 @@ export default async function Home() {
         }}
       />
 
-      <Values />
+      {/* <Values /> */}
       <Contact
         title={joinTeamSettings?.data?.title}
         content={joinTeamSettings?.data?.content}

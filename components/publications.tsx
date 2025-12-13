@@ -35,6 +35,7 @@ type PublicationsProps = {
 
 export function Publications({ publications, pagination }: PublicationsProps) {
   const [copiedId, setCopiedId] = useState<string | null>(null);
+  const [announcement, setAnnouncement] = useState<string>("");
   const { t } = useTranslation();
 
   // Get DOI URL from DOI string
@@ -69,9 +70,14 @@ export function Publications({ publications, pagination }: PublicationsProps) {
     try {
       await navigator.clipboard.writeText(citation);
       setCopiedId(pub.id);
-      setTimeout(() => setCopiedId(null), 2000);
+      setAnnouncement(`Citation for ${pub.title} copied to clipboard`);
+      setTimeout(() => {
+        setCopiedId(null);
+        setAnnouncement("");
+      }, 2000);
     } catch (err) {
       console.error("Failed to copy citation:", err);
+      setAnnouncement("Failed to copy citation");
     }
   };
 
@@ -115,107 +121,136 @@ export function Publications({ publications, pagination }: PublicationsProps) {
   };
 
   return (
-    <section className="relative py-6 px-4 bg-muted/20">
+    <section className="relative py-6 px-4 bg-muted/20" aria-label="Publications section">
+      {/* Screen reader announcement for copy action */}
+      <div
+        role="status"
+        aria-live="polite"
+        aria-atomic="true"
+        className="sr-only"
+      >
+        {announcement}
+      </div>
+
       <div className="container mx-auto max-w-7xl">
         {/* Publications */}
         <section className="relative py-24 px-4">
           <div className="">
             <div className="max-w-4xl mx-auto space-y-6">
               {publications.length === 0 ? (
-                <div className="text-center py-12 text-foreground/60">
+                <div className="text-center py-12 text-foreground/60" role="status">
                   {t("publications.noPublications")}
                 </div>
               ) : (
-                <>
+                <ul role="list" aria-label="Publications list" className="space-y-6 list-none p-0">
                   {publications.map((pub, index) => (
-                    <Card
-                      key={pub.id}
-                      className="group overflow-hidden hover:shadow-lg transition-all duration-300 border-border bg-card hover:bg-card/80"
-                    >
-                      <CardContent className="p-6">
-                        <div className="space-y-4">
-                          <h3 className="text-lg font-semibold group-hover:text-primary transition-colors">
-                            {pub.title}
-                          </h3>
-                          {pub.abstract && (
-                            <p className="text-foreground/60 text-sm leading-relaxed">
-                              {pub.abstract}
-                            </p>
-                          )}
-                          <div className="space-y-2">
-                            <p className="text-foreground/70">
-                              <span className="font-medium">{t("publications.authors")}:</span>{" "}
-                              {Array.isArray(pub.authors) ? pub.authors.join(", ") : pub.authors}
-                            </p>
-                            {pub.journal && (
-                              <p className="text-foreground/70">
-                                <span className="font-medium">{t("publications.journal")}:</span>{" "}
-                                {pub.journal}{pub.year ? `, ${pub.year}` : ""}
+                    <li key={pub.id}>
+                      <Card
+                        className="group overflow-hidden hover:shadow-lg transition-all duration-300 border-border bg-card hover:bg-card/80"
+                        role="article"
+                        aria-labelledby={`pub-title-${pub.id}`}
+                      >
+                        <CardContent className="p-6">
+                          <div className="space-y-4">
+                            <h3
+                              id={`pub-title-${pub.id}`}
+                              className="text-lg font-semibold group-hover:text-primary transition-colors"
+                            >
+                              {pub.title}
+                            </h3>
+                            {pub.abstract && (
+                              <p className="text-foreground/60 text-sm leading-relaxed">
+                                {pub.abstract}
                               </p>
                             )}
-                            {pub.doi && (
-                              <p className="text-sm font-mono">
-                                <span className="font-medium text-foreground/70">{t("publications.doi")}:</span>{" "}
-                                <a
-                                  href={getDoiUrl(pub.doi) || "#"}
+                            <dl className="space-y-2">
+                              <div className="text-foreground/70">
+                                <dt className="font-medium inline">{t("publications.authors")}:</dt>{" "}
+                                <dd className="inline">
+                                  {Array.isArray(pub.authors) ? pub.authors.join(", ") : pub.authors}
+                                </dd>
+                              </div>
+                              {pub.journal && (
+                                <div className="text-foreground/70">
+                                  <dt className="font-medium inline">{t("publications.journal")}:</dt>{" "}
+                                  <dd className="inline">
+                                    {pub.journal}{pub.year ? `, ${pub.year}` : ""}
+                                  </dd>
+                                </div>
+                              )}
+                              {pub.doi && (
+                                <div className="text-sm font-mono">
+                                  <dt className="font-medium text-foreground/70 inline">{t("publications.doi")}:</dt>{" "}
+                                  <dd className="inline">
+                                    <a
+                                      href={getDoiUrl(pub.doi) || "#"}
+                                      target="_blank"
+                                      rel="noopener noreferrer"
+                                      className="text-primary hover:underline"
+                                      aria-label={`DOI link for ${pub.title}, opens in new tab`}
+                                    >
+                                      {pub.doi}
+                                    </a>
+                                  </dd>
+                                </div>
+                              )}
+                              {pub.citationCount !== null && pub.citationCount > 0 && (
+                                <div className="text-foreground/70 text-sm">
+                                  <dt className="font-medium inline">{t("publications.citations")}:</dt>{" "}
+                                  <dd className="inline">{pub.citationCount}</dd>
+                                </div>
+                              )}
+                            </dl>
+                            <div className="flex gap-2 pt-2">
+                              {getPaperUrl(pub) && (
+                                <CTAButton
+                                  size="sm"
+                                  className="group/btn"
+                                  textStyle="default"
+                                  href={getPaperUrl(pub)!}
                                   target="_blank"
                                   rel="noopener noreferrer"
-                                  className="text-primary hover:underline"
+                                  aria-label={`View paper: ${pub.title}, opens in new tab`}
                                 >
-                                  {pub.doi}
-                                </a>
-                              </p>
-                            )}
-                            {pub.citationCount !== null && pub.citationCount > 0 && (
-                              <p className="text-foreground/70 text-sm">
-                                <span className="font-medium">{t("publications.citations")}:</span>{" "}
-                                {pub.citationCount}
-                              </p>
-                            )}
-                          </div>
-                          <div className="flex gap-2 pt-2">
-                            {getPaperUrl(pub) && (
+                                  {t("publications.viewPaper")}
+                                  <ExternalLink className="ml-2 w-3 h-3 transition-transform group-hover/btn:translate-x-0.5" aria-hidden="true" />
+                                </CTAButton>
+                              )}
                               <CTAButton
                                 size="sm"
-                                className="group/btn"
                                 textStyle="default"
-                                href={getPaperUrl(pub)!}
-                                target="_blank"
-                                rel="noopener noreferrer"
+                                variant="secondary"
+                                onClick={() => handleCopyCitation(pub)}
+                                aria-label={copiedId === pub.id ? `Citation copied for ${pub.title}` : `Copy citation for ${pub.title}`}
                               >
-                                {t("publications.viewPaper")}
-                                <ExternalLink className="ml-2 w-3 h-3 transition-transform group-hover/btn:translate-x-0.5" />
+                                {copiedId === pub.id ? (
+                                  <>
+                                    {t("publications.copied")}
+                                    <Check className="ml-2 w-3 h-3" aria-hidden="true" />
+                                  </>
+                                ) : (
+                                  <>
+                                    {t("publications.cite")}
+                                    <Copy className="ml-2 w-3 h-3" aria-hidden="true" />
+                                  </>
+                                )}
                               </CTAButton>
-                            )}
-                            <CTAButton
-                              size="sm"
-                              textStyle="default"
-                              variant="secondary"
-                              onClick={() => handleCopyCitation(pub)}
-                            >
-                              {copiedId === pub.id ? (
-                                <>
-                                  {t("publications.copied")}
-                                  <Check className="ml-2 w-3 h-3" />
-                                </>
-                              ) : (
-                                <>
-                                  {t("publications.cite")}
-                                  <Copy className="ml-2 w-3 h-3" />
-                                </>
-                              )}
-                            </CTAButton>
+                            </div>
                           </div>
-                        </div>
-                      </CardContent>
-                    </Card>
+                        </CardContent>
+                      </Card>
+                    </li>
                   ))}
-                </>
+                </ul>
               )}
 
               {/* Pagination Controls */}
               {pagination && (
-                <div className="flex items-center justify-center gap-1.5 pt-8">
+                <nav
+                  className="flex items-center justify-center gap-1.5 pt-8"
+                  role="navigation"
+                  aria-label="Publications pagination"
+                >
                   {/* Previous Button */}
                   <Button
                     variant="outline"
@@ -223,23 +258,25 @@ export function Publications({ publications, pagination }: PublicationsProps) {
                     className="h-8 w-8 rounded-full"
                     disabled={pagination.currentPage === 1}
                     asChild={pagination.currentPage !== 1}
+                    aria-label={`Go to previous page, page ${pagination.currentPage - 1}`}
                   >
                     {pagination.currentPage === 1 ? (
-                      <span>
+                      <span aria-hidden="true">
                         <ChevronLeft className="h-4 w-4" />
                       </span>
                     ) : (
                       <Link href={`/publications?page=${pagination.currentPage - 1}`}>
-                        <ChevronLeft className="h-4 w-4" />
+                        <ChevronLeft className="h-4 w-4" aria-hidden="true" />
+                        <span className="sr-only">Previous page</span>
                       </Link>
                     )}
                   </Button>
 
                   {/* Page Numbers */}
-                  <div className="flex items-center gap-1">
+                  <div className="flex items-center gap-1" role="list" aria-label="Page numbers">
                     {getPageNumbers().map((page, idx) =>
                       page === "ellipsis" ? (
-                        <span key={`ellipsis-${idx}`} className="px-1 text-foreground/50 text-sm">
+                        <span key={`ellipsis-${idx}`} className="px-1 text-foreground/50 text-sm" aria-hidden="true">
                           ...
                         </span>
                       ) : (
@@ -249,6 +286,8 @@ export function Publications({ publications, pagination }: PublicationsProps) {
                           size="icon"
                           className="h-8 w-8 rounded-full text-xs"
                           asChild={pagination.currentPage !== page}
+                          aria-label={pagination.currentPage === page ? `Current page, page ${page}` : `Go to page ${page}`}
+                          aria-current={pagination.currentPage === page ? "page" : undefined}
                         >
                           {pagination.currentPage === page ? (
                             <span>{page}</span>
@@ -267,23 +306,29 @@ export function Publications({ publications, pagination }: PublicationsProps) {
                     className="h-8 w-8 rounded-full"
                     disabled={pagination.currentPage === pagination.totalPages || pagination.totalPages === 0}
                     asChild={pagination.currentPage !== pagination.totalPages && pagination.totalPages > 0}
+                    aria-label={`Go to next page, page ${pagination.currentPage + 1}`}
                   >
                     {pagination.currentPage === pagination.totalPages || pagination.totalPages === 0 ? (
-                      <span>
+                      <span aria-hidden="true">
                         <ChevronRight className="h-4 w-4" />
                       </span>
                     ) : (
                       <Link href={`/publications?page=${pagination.currentPage + 1}`}>
-                        <ChevronRight className="h-4 w-4" />
+                        <ChevronRight className="h-4 w-4" aria-hidden="true" />
+                        <span className="sr-only">Next page</span>
                       </Link>
                     )}
                   </Button>
-                </div>
+                </nav>
               )}
 
               {/* Results Info */}
               {pagination && (
-                <div className="text-center text-sm text-foreground/50 pt-2">
+                <div
+                  className="text-center text-sm text-foreground/50 pt-2"
+                  role="status"
+                  aria-live="polite"
+                >
                   {t("common.showing")} {((pagination.currentPage - 1) * 10) + 1}–{Math.min(pagination.currentPage * 10, pagination.totalCount)} {t("common.of")} {pagination.totalCount} {t("publications.publicationsCount")}
                 </div>
               )}
