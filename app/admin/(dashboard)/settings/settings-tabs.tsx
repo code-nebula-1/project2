@@ -42,3 +42,4 @@ export function SettingsTabs({ joinTeamSettings, locationSettings }: SettingsTab
   );
 }
 
+

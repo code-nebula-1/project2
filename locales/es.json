@@ -20,6 +20,29 @@
     "previous": "Anterior",
     "next": "Siguiente"
   },
+  "accessibility": {
+    "skipToContent": "Saltar al contenido principal",
+    "mainNavigation": "Navegación principal",
+    "footerNavigation": "Navegación del pie de página",
+    "closeMap": "Cerrar mapa de ubicación",
+    "locationMap": "Mapa de ubicación interactivo",
+    "activeStatus": "Actualmente activo",
+    "heroCarousel": "Carrusel de imágenes mostrando PIERS Lab",
+    "slideOf": "Diapositiva {current} de {total}",
+    "goToSlide": "Ir a diapositiva {number}",
+    "previousSlide": "Diapositiva anterior",
+    "nextSlide": "Siguiente diapositiva",
+    "carouselPaused": "Carrusel pausado",
+    "carouselPlaying": "Carrusel reproduciendo",
+    "paginationNav": "Navegación de paginación",
+    "page": "Página",
+    "currentPage": "Página actual",
+    "goToPage": "Ir a página {number}",
+    "copiedToClipboard": "Cita copiada al portapapeles",
+    "viewMemberProfile": "Ver perfil de {name}",
+    "externalLink": "Se abre en nueva pestaña",
+    "decorativeImage": ""
+  },
   "hero": {
     "welcome": "Bienvenido a PIERS lab"
   },

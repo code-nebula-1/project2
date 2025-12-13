@@ -75,18 +75,20 @@ export function FloatingLocationMap({
         crossOrigin=""
       />
 
-
-
-      <div className="border-gradient unique-shape shadow-2xl animate-in slide-in-from-right-5 duration-700 w-80 h-72">
+      <aside
+        role="complementary"
+        aria-label={`Location map showing ${personName}'s location`}
+        className="border-gradient unique-shape shadow-2xl animate-in slide-in-from-right-5 duration-700 w-80 h-72"
+      >
         <div className="relative w-full h-full inner-shape overflow-hidden">
           {/* Subtle background */}
-          <div className="absolute inset-0 bg-gray-50/50 pointer-events-none" />
+          <div className="absolute inset-0 bg-gray-50/50 pointer-events-none" aria-hidden="true" />
 
           {/* Header */}
           <div className="absolute top-0 left-0 right-0 z-10 bg-gray-800 text-white px-4 py-3 flex items-center justify-between shadow-lg backdrop-blur-md bg-opacity-90" style={{ clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0 100%)' }}>
             <div className="flex items-center gap-2">
-              <MapPin className="w-4 h-4" />
-              <span className="text-sm font-bold tracking-wide">
+              <MapPin className="w-4 h-4" aria-hidden="true" />
+              <span className="text-sm font-bold tracking-wide" id="map-title">
                 {personName}&apos;s Location
               </span>
             </div>
@@ -95,28 +97,36 @@ export function FloatingLocationMap({
               size="icon"
               className="h-6 w-6 text-white hover:bg-gray-700 rounded-full transition-all hover:rotate-90 duration-300"
               onClick={() => setIsVisible(false)}
+              aria-label={`Close ${personName}'s location map`}
             >
-              <X className="h-4 w-4" />
+              <X className="h-4 w-4" aria-hidden="true" />
             </Button>
           </div>
 
           {/* Map Container */}
-          <div ref={mapRef} className="w-full h-full" />
+          <div
+            ref={mapRef}
+            className="w-full h-full"
+            role="application"
+            aria-label={`Interactive map showing ${personName}'s location`}
+            aria-describedby="map-title"
+            tabIndex={0}
+          />
 
           {/* Status Badge */}
-          <div className="absolute bottom-4 left-4 z-10">
+          <div className="absolute bottom-4 left-4 z-10" role="status" aria-live="polite">
             <div className="relative">
-              <div className="absolute inset-0 bg-gray-400 rounded-full blur-sm opacity-50" />
+              <div className="absolute inset-0 bg-gray-400 rounded-full blur-sm opacity-50" aria-hidden="true" />
               <div className="relative bg-white/95 backdrop-blur-sm px-3 py-1.5 rounded-full shadow-lg border-2 border-gray-400">
                 <div className="flex items-center gap-2">
-                  <div className="w-2 h-2 bg-gray-500 rounded-full" />
+                  <div className="w-2 h-2 bg-gray-500 rounded-full" aria-hidden="true" />
                   <span className="text-xs font-bold text-gray-800">Active Now</span>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
+      </aside>
     </>
   )
 }
